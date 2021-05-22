@@ -1,0 +1,15 @@
+---
+- hosts: Web
+  become: True
+
+  tasks:
+  - name: Installeer apache
+    apt:
+      name: apache2
+      state: present
+      update_cache: yes
+
+  #- name: Copy index.html
+    #template:
+      #src: "/home/VM2/playbooks/roles/"
+      #dest: "/var/www/{{ http_host_dir}}"/index.html"
