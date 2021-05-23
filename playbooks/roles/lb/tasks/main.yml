@@ -25,5 +25,5 @@
     dest: /etc/haproxy/haproxy.cfg
     backup: yes
   # notify: restart haproxy
-  tags:
-    - deploy haproxy config
+  # tags:
+  #   - deploy haproxy config

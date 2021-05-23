@@ -10,7 +10,7 @@ _klantnummer=$((_klantnummer+1))
 echo "_klantnummer=$_klannntnummer" > klantnummer.sh
 
 #mappen structuur
-cd /home/student/vm2/klanten
+cd /home/VM2/klanten
 mkdir "$_klantnaam"
 cd "$_klantnaam"
 mkdir "productie"
