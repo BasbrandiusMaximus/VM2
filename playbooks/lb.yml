@@ -1,0 +1,6 @@
+---
+# lb
+- hosts: loadbalancer
+  become: yes
+  roles:
+    - lb

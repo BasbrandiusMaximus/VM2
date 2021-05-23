@@ -1,55 +1,29 @@
 global
-    log         127.0.0.1 local2
-
-    chroot      /var/lib/haproxy
-    pidfile     /var/run/haproxy.pid
-
-        daemon
-        maxconn 4000
+    log         127.0.0.1 local0 notice
+    maxconn     2000
     user        haproxy
     group       haproxy
 
-    defaults
-        mode http
-        log     global
-        option  httpdlog
-        option  dontlognull
-        option  http-server-close
-        option forwardfor   except  127.0.0.0/8
-        option  redispatch
-        retries 3
-        timeout http-request    10s
-        timeout queue           30s
-        timeout connect         10s
-        timeout client          30s
-        timeout server          30s
-        timeout http-keep-alive 10s
-        timeout checked         10s
-        maxconn                 3000
-
-
-    frontend haproxy_frontend
-        bind *:80
-        default_backend haproxy_backend
-
-    backend haproxy_backend
-        option httpchk GET /httpchk HTTP/1.1
-        balance roundrobin
-        mode http
-        # add all webservers with nwadapter eth1
-    {% for host in groups['webservers'] %}
-        server {{ host }} {{ hostvars[host].ansible_enp0s8.ipv4.address }}:80
-    {% endfor %}
+defaults
+    mode        http
+    log         global
+    option      httplog
+    option      dontlognull
+    option      redispatch
+    retries     3
+    timeout connect         10s
+    timeout client          30s
+    timeout server          30s
 
 listen stats
-    #stats interface
-    bind    *:8080
+    bind    {{ lb1 }}:80
     mode    http
     stats   enable
-    stats   hide-version
-    stats   reals Haproxy\ Statistics
-    stats   uri /
-    stats auth haproxy:haproxy
-    timeout connect 25s
-    timeout client 25s
-    timeout server 25s
+    stats   uri /haproxy?stats
+    stats   realm Haproxy\ Private
+    stats   auth vagrant:vagrant
+    balance roundrobin
+    option  httpclose
+    option  forwardfor
+    server {{ name }}-web1 {{ web1 }}:80
+    server {{ name }}-web2 {{ web2 }}:80

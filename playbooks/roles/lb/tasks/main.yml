@@ -24,6 +24,9 @@
     src: ./templates/haproxy.cfg.j2
     dest: /etc/haproxy/haproxy.cfg
     backup: yes
-  # notify: restart haproxy
-  # tags:
-  #   - deploy haproxy config
+
+- name: restart haproxy
+  service: name=haproxy state=started
+  
+- name: restart haproxy
+  service: name=haproxy state=restarted

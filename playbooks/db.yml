@@ -1,0 +1,6 @@
+---
+db
+- hosts: databases
+  become: yes
+  roles:
+    - db

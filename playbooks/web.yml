@@ -1,0 +1,6 @@
+---
+# web
+- hosts: webservers
+  become: yes
+  roles:
+    - web

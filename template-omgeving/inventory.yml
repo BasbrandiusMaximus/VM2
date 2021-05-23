@@ -1,22 +1,22 @@
 all:
   hosts:
     klantnaam-web1:
-      ansible_host: 192.168.100.21
+      ansible_host: 192.168.ipaddress.21
       ansible_connection: ssh
       ansible_user: vagrant
       ansible_pass: vagrant
     klantnaam-web2:
-      ansible_host: 192.168.100.22
+      ansible_host: 192.168.ipaddress.22
       ansible_connection: ssh
       ansible_user: vagrant
       ansible_pass: vagrant 
     klantnaam-lb1:
-      ansible_host: 192.168.100.31
+      ansible_host: 192.168.ipaddress.31
       ansible_connection: ssh
       ansible_user: vagrant
       ansible_pass: vagrant
     klantnaam-db1:
-      ansible_host: 192.168.100.41
+      ansible_host: 192.168.ipaddress.41
       ansible_connection: ssh
       ansible_user: vagrant
       ansible_pass: vagrant  
@@ -32,8 +32,10 @@ all:
       hosts:
         klantnaam-lb1:
       vars:
+        lb1: 192.168.ipaddress.31
         web1: 192.168.ipaddress.21
         web2: 192.168.ipaddress.22
+        name: klantnaam
     databases:
       hosts:
         klantnaam-db1:

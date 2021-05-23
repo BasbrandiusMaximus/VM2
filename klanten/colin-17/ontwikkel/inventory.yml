@@ -1,0 +1,60 @@
+all:
+  hosts:
+    colin-17-ontwikkel-web1:
+      ansible_host: 192.168.17.21
+      ansible_connection: ssh
+      ansible_user: vagrant
+      ansible_pass: vagrant
+    colin-17-ontwikkel-web2:
+      ansible_host: 192.168.17.22
+      ansible_connection: ssh
+      ansible_user: vagrant
+      ansible_pass: vagrant 
+    colin-17-ontwikkel-lb1:
+      ansible_host: 192.168.17.31
+      ansible_connection: ssh
+      ansible_user: vagrant
+      ansible_pass: vagrant
+    colin-17-ontwikkel-db1:
+      ansible_host: 192.168.17.41
+      ansible_connection: ssh
+      ansible_user: vagrant
+      ansible_pass: vagrant  
+
+  children:
+    webservers:
+      hosts:
+        colin-17-ontwikkel-web1:
+        colin-17-ontwikkel-web2:
+      vars:
+        dbserver: 192.168.17.41
+    loadbalancer:
+      hosts:
+        colin-17-ontwikkel-lb1:
+      vars:
+        lb1: 192.168.17.31
+        web1: 192.168.17.21
+        web2: 192.168.17.22
+        name: colin-17-ontwikkel
+    databases:
+      hosts:
+        colin-17-ontwikkel-db1:
+
+# [webservers]
+# 192.168.100.21 #ansible_user=vagrant
+# 192.168.100.22 #ansible_user=vagrant
+
+# [loadbalancer]
+# 192.168.100.31 #ansible_user=vagrant
+
+# [databases]
+# 192.168.100.41 #ansible_user=vagrant
+
+# [all:children]
+# webservers
+# loadbalancer
+# databases
+
+# [loadbalancer:vars]
+# bind_port=80
+# stats_port=8080
