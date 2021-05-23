@@ -71,41 +71,41 @@ Vagrant.configure("2") do |config|
   config.ssh.private_key_path = ["/root/.ssh/id_rsa.pub","~/.vagrant.d/insecure_private_key"]
 
   (1..2).each do |i|
-    config.vm.define "klant1web#{i}" do |web_config|
+    config.vm.define "klantnaam-web#{i}" do |web_config|
       web_config.vm.box = "ubuntu/xenial64"
-      web_config.vm.hostname = "klant1web#{i}"
+      web_config.vm.hostname = "klantnaam-web#{i}"
       web_config.vm.network :private_network, ip: "192.168.100.2#{i}"
       web_config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
       web_config.vm.provider "virtualbox" do |vb|
         vb.memory = "512"
         vb.gui = false
-        vb.name = "klant1web#{i}"
+        vb.name = "klantnaam-web#{i}"
       end
     end
   end
   (1..1).each do |i|
-    config.vm.define "klant1lb#{i}" do |lb_config|
+    config.vm.define "klantnaam-lb#{i}" do |lb_config|
       lb_config.vm.box = "ubuntu/xenial64"
-      lb_config.vm.hostname = "klant1lb#{i}"
+      lb_config.vm.hostname = "klantnaam-lb#{i}"
       lb_config.vm.network :private_network, ip: "192.168.100.3#{i}"
       lb_config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
       lb_config.vm.provider "virtualbox" do |vb|
         vb.memory = "512"
         vb.gui = false
-        vb.name = "klant1lb#{i}"
+        vb.name = "klantnaam-lb#{i}"
       end
     end
   end
   (1..1).each do |i|
-    config.vm.define "klant1db#{i}" do |db_config|
+    config.vm.define "klantnaam-db#{i}" do |db_config|
       db_config.vm.box = "ubuntu/xenial64"
-      db_config.vm.hostname = "klant1db#{i}"
+      db_config.vm.hostname = "klantnaam-db#{i}"
       db_config.vm.network :private_network, ip: "192.168.100.4#{i}"
       db_config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
       db_config.vm.provider "virtualbox" do |vb|
         vb.memory = "512"
         vb.gui = false
-        vb.name = "klant1db#{i}"
+        vb.name = "klantnaam-db#{i}"
       end
     end
   end

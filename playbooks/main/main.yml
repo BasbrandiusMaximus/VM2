@@ -1,10 +1,23 @@
 ---
-- hosts: haproxy
-  become: True
+  #common
+- hosts: all
+  become: yes
+  gather_facts: yes
 
-  tasks:
-  - name: Installeer haproxy
-    apt:
-      name: haproxy
-      state: present
-      update_cache: yes
+  roles:
+    - common
+    - users
+
+# web
+- hosts: web
+  become: yes
+
+  roles:
+    - web
+
+# lb
+- hosts: lb
+become: yes
+
+roles:
+  - lb

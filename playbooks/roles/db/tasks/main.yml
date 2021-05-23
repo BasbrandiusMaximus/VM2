@@ -1,10 +1,9 @@
 ---
-- hosts: mariadb-server
-  become: True
+- name: Update apt update_cache
+  apt:
+    update_cache: yes
 
-  tasks:
-  - name: Installeer mariadb
-    apt:
-      name: mariadb-server
-      state: present
-      update_cache: yes
+- name: Installeer mariadb
+  apt:
+    name: mariadb-server
+    state: present

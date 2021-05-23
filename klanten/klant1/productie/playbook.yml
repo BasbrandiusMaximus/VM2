@@ -1,50 +1,27 @@
 ---
-#- hosts: all
- # become: yes
-  #tasks:
-    #- name: Ensure NTP is installed.
-      #apt: name=ntp state=present
-    #- name: Ensure NTP is running
-      #service: name=ntpd state=started enable=yes
+#NTP voorbeeld uit college
+# - hosts: all
+#  become: yes
+#   tasks:
+#     - name: Ensure NTP is installed.
+#       apt: name=ntp state=present
+#     - name: Ensure NTP is running
+#       service: name=ntpd state=started enable=yes
 
 # web
 - hosts: webservers
   become: yes
-
-  tasks:
-  - name: Installeer apache
-    apt:
-      name: apache2
-      state: present
-      update_cache: yes
-
-  #roles:
-    #- web
+  roles:
+    - web
 
 # lb
 - hosts: loadbalancer
   become: yes
-
-  tasks:
-  - name: Installeer haproxy
-    apt:
-      name: haproxy
-      state: present
-      update_cache: yes
-
-  #roles:
-    #- lb
+  roles:
+    - lb
 
 # db
-- hosts: databases
-  become: yes
-
-  tasks:
-  - name: Installeer mariadb
-    apt:
-     name: mariadb-server
-     state: present
-     update_cache: yes
-
-  #roles:
-    #- db
+# - hosts: databases
+#   become: yes
+#   roles:
+#     - db
