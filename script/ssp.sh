@@ -49,15 +49,17 @@ then
         sed -i "s/klantnaam/$_klantnaam-$_klantnummer-$_type/g" inventory.yml
         sed -i "s/ipaddress/$_klantnummer/g" inventory.yml
         #SSH-keys aanmaken
-        # echo
-        echo "SSH-keys aanmaken"
-        ssh-keyscan 192.168.$_klantnummer.21 $_klantnaam-$_klantnummer-$_type-web1 >> ~/.ssh/known_hosts
         echo
-        ssh-keyscan 192.168.$_klantnummer.22 $_klantnaam-$_klantnummer-$_type-web2 >> ~/.ssh/known_hosts
+        # echo "SSH-keys aanmaken"
+        # echo "192.168.$_klantnummer.21  $_klantnaam-$_klantnummer-$_type-web1" | sudo tee -a /etc/hosts > /dev/null
+        ssh-keyscan $_klantnaam-$_klantnummer-$_type-web1 192.168.$_klantnummer.21 >> ~/.ssh/known_hosts
         echo
-        ssh-keyscan 192.168.$_klantnummer.31 $_klantnaam-$_klantnummer-$_type-lb1 >> ~/.ssh/known_hosts
+        ssh-keyscan $_klantnaam-$_klantnummer-$_type-web2 192.168.$_klantnummer.22 >> ~/.ssh/known_hosts
         echo
-        ssh-keyscan 192.168.$_klantnummer.41 $_klantnaam-$_klantnummer-$_type-db1 >> ~/.ssh/known_hosts
+        ssh-keyscan $_klantnaam-$_klantnummer-$_type-lb1 192.168.$_klantnummer.31 >> ~/.ssh/known_hosts
+        echo
+        ssh-keyscan $_klantnaam-$_klantnummer-$_type-db1 192.168.$_klantnummer.41 >> ~/.ssh/known_hosts
+
 
         #uitvoeren ansible op basis van type voor ieder aanwezige type
         cp /home/VM2/template-omgeving/ansible.cfg /home/VM2/klanten/"$_klantnaam-$_klantnummer"/"$_type"/ansible.cfg
