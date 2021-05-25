@@ -3,7 +3,7 @@
 #   gather_facts: yes
 
   # lb
-- hosts: loadbalancer
+- hosts: loadbalancers
   become: yes
   roles:
     - lb
