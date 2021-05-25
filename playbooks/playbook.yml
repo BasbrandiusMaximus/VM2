@@ -7,7 +7,7 @@
         update_cache: yes
         upgrade: dist
 
-- hosts: web
+- hosts: webservers
   become: yes
   roles:
     - web

@@ -8,12 +8,15 @@
     name: apache2
     state: present
 
-- name: Maak index.php
-  template:
-    src: "/home/VM2/playbooks/roles/web/files/index.php"
-    dest: "/var/www/html/index.php"
-
 - name: Verwijder index.html
   file:
     path: /var/www/html/index.html
     state: absent
+
+- name: Maak index.php
+  templates:
+    src: /home/VM2/templates/roles/web/templates/index.php
+    dest: /var/www/html/index.php
+    owner: root
+    group: root
+    mode: 0644
