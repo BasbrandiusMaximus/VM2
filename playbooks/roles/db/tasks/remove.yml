@@ -1,0 +1,11 @@
+---
+- name: verwijder anonieme mysql user
+  mysql_user:
+    name: ""
+    host_all: yes
+    state absent
+
+- name: verwijder mysql test db
+  mysql_db:
+    name: test
+    state: absent

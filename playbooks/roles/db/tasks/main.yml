@@ -1,74 +1,164 @@
 ---
-- name: Update apt update_cache
-  apt:
+- name: install MySQL
+  package:
     update_cache: yes
-
-- name: Installeer mysql
-  apt:
-    name: "{{ packages }}"
+    name:
+      - python3-pip
+      - mysql-server
+      - mysql-client
     state: present
-  vars:
-    packages:
-    - "{{ mypip }}"
-    - "{{ "pymysqldb }}"
-    - libmysqlclient-dev
-    - mysql-server
-    - mysql-client
 
-- name: start mySQL-server
+- name: install pymysql
+  pip:
+    name: pymysql
+    state: present
+
+- name: start and enable mysql service
   service:
     name: mysql
     state: started
+    enabled: yes
 
-- name: remove test db
-  mysql_db:
-    name: test
-    state: absent
-
-- name: create deploy user
-  mysql_user: user=vagrant host=localhost password=vagrant priv=*.*:ALL,GRANT
-
-- name: create net-user priv
-  mysql_user: user=vagrant host=% password=vagrant priv=*.*:ALL,GRANT
-
-- name: write my.cnf
-  template: src=/home/VM2/playbooks/roles/db/templates/my.cnf dest=/etc/mysql/my.cnf
-
-- name: restart mysql
-  service: name=mysql state=started
-  
-- name: restart mysql
-  service: name=mysql state=restarted
-
-- name: add custom database
-  mysql_db:
-    name: template-database
-    state: present
-
-- name: remove anonymous users db
-  mysql_user: user=' ' host={{ item }} state=absent
-  with items:
-  - 127.0.0.1
-  - ::1
-  - localhost
-
-- name: copy database template
-  copy: src=/home/VM2/playbooks/roles/db/templates/template-database.sql dest=/tmp
-
-- name: create /etc/mysql/mysql.conf.d directory if not exists
-  file:
-    path: /etc/mysql/mysql.conf.d
-    state: directory  
-    mode: 0755
-    group: root
+- name: add config file
+  template:
+    src: my.cnf.j2
+    dest: "/etc/mysql/mysql.cnf"
     owner: root
-    recurse: yes
+    group: root
+    mode: 0644
+  notify:
+  - restart mysql-server
 
-- name: import db template
-  mysql_db:
-    name: template-database
-    login_host: localhost
-    login_user: vagrant
-    login_password: vagrant
-    state: import
-    target: "/tmp/template-database.sql"
+  - name: add my.cnf to root
+  template:
+    src: "root-my.cnf.j2"
+    dest: "/root/.my.cnf"
+    owner: root
+    group: root
+    mode: 0600
+  notify:
+  - restart mysql-server
+
+- name: ensure default user is present
+  become: true
+  mysql_user:
+    login_user: "{{ mysql_root_username }}"
+    login_password: "{{ mysql_root_password }}"
+    name: "{{ mysql_root_username }}"
+    host: 'localhost'
+    password: "{{ mysql_root_password }}"
+    priv: '*.*:ALL,GRANT'
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+
+- include_tasks: secure.yml
+
+- include_tasks: database.yml
+...
+
+# ---
+# - name: installeer mysql
+#   package:
+#     update_cache: yes
+#     name:
+#       - python3-pip
+#       - mysql-server
+#       - mysql-client
+#     state: present
+
+# - name: installeer pymysql
+#   pip:
+#     name: pymysql
+#     state: present
+
+# - name: start and enable mysql service
+#   service:
+#     name: mysql
+#     state: started
+#     enabled: yes
+
+# # - name: Installeer mysql
+# #   package:
+# #     update_cache: yes
+# #     name:
+# #      - python3-pip
+# #      - mysql-server
+# #      - mysql-client
+# #     state: present
+
+# # - name: start mySQL-server
+# #   service:
+# #     name: mysql
+# #     state: started
+# #     enabled: yes
+
+# - name: voeg config file toe
+#   template:
+#     src: my.cnf
+#     dest: "/etc/mysql/mysql.cnf"
+#     owner: root
+#     group: root
+#     mode: 0644
+#   notify:
+#   - restart mysql-server
+
+# - name: voeg config file aan root toe
+#   template:
+#     src: "root-my.cnf"
+#     dest: "/root/.my.cnf"
+#     owner: root
+#     group: root
+#     mode: 0600
+#   notify:
+#   - restart mysql-server
+
+
+
+# # - name: create deploy user
+# #   mysql_user: user=vagrant host=localhost password=vagrant priv=*.*:ALL,GRANT
+
+# # - name: create net-user priv
+# #   mysql_user: user=vagrant host=% password=vagrant priv=*.*:ALL,GRANT
+
+
+
+# # - name: restart mysql
+# #   service: name=mysql state=started
+  
+# # - name: restart mysql
+# #   service: name=mysql state=restarted
+
+# # - name: add custom database
+# #   mysql_db:
+# #     name: template-database
+# #     state: present
+
+# # - name: remove anonymous users db
+# #   mysql_user: user=' ' host={{ item }} state=absent
+# #   with items:
+# #   - 127.0.0.1
+# #   - ::1
+# #   - localhost
+
+# # - name: copy database template
+# #   copy: src=/home/VM2/playbooks/roles/db/templates/template-database.sql dest=/tmp
+
+# - name: create /etc/mysql/mysql.conf.d directory if not exists
+#   file:
+#     path: /etc/mysql/mysql.conf.d
+#     state: directory  
+#     mode: 0755
+#     group: root
+#     owner: root
+#     recurse: yes
+
+# # - name: import db template
+# #   mysql_db:
+# #     name: template-database
+# #     login_host: localhost
+# #     login_user: vagrant
+# #     login_password: vagrant
+# #     state: import
+# #     target: "/tmp/template-database.sql"
+
+# - include_tasks: remove.yml
+# - include_tasks: db.yml

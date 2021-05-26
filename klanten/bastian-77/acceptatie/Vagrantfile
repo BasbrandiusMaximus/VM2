@@ -19,52 +19,52 @@ Vagrant.configure("2") do |config|
   #hostname_base = "{{ hostname_default }}"
 
   #configure web in a loop
-  if {{ web }}
-    (1..{{ web_aantal }}).each do |i|
-      config.vm.define "klantnaam-web#{i}" do |web_config|
+  if true
+    (1..2).each do |i|
+      config.vm.define "bastian-77-acceptatie-web#{i}" do |web_config|
         web_config.vm.box = "ubuntu/focal64"
-        web_config.vm.hostname = "klantnaam-web#{i}"
-        web_config.vm.network :private_network, ip: "192.168.ipaddress.2#{i}"
+        web_config.vm.hostname = "bastian-77-acceptatie-web#{i}"
+        web_config.vm.network :private_network, ip: "192.168.77.2#{i}"
         web_config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
         web_config.vm.provision :hostmanager
         web_config.vm.provider "virtualbox" do |vb|
-          vb.memory = "{{ web_memory }}"
+          vb.memory = "1024"
           vb.gui = false
-          vb.name = "klantnaam-web#{i}"
+          vb.name = "bastian-77-acceptatie-web#{i}"
         end
       end
     end
   end
   #configure lb in a loop
-  if {{ lb }}
-    (1..{{ lb_aantal }}).each do |i|
-      config.vm.define "klantnaam-lb#{i}" do |lb_config|
+  if true
+    (1..1).each do |i|
+      config.vm.define "bastian-77-acceptatie-lb#{i}" do |lb_config|
         lb_config.vm.box = "ubuntu/focal64"
-        lb_config.vm.hostname = "klantnaam-lb#{i}"
-        lb_config.vm.network :private_network, ip: "192.168.ipaddress.3#{i}"
+        lb_config.vm.hostname = "bastian-77-acceptatie-lb#{i}"
+        lb_config.vm.network :private_network, ip: "192.168.77.3#{i}"
         lb_config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
         lb_config.vm.provision :hostmanager
         lb_config.vm.provider "virtualbox" do |vb|
-          vb.memory = "{{ lb_memory }}"
+          vb.memory = "1024"
           vb.gui = false
-          vb.name = "klantnaam-lb#{i}"
+          vb.name = "bastian-77-acceptatie-lb#{i}"
         end
       end
     end
   end
   #configure db in a loop
-  if {{ db }}
-    (1..{{ db_aantal }}).each do |i|
-      config.vm.define "klantnaam-db#{i}" do |db_config|
+  if true
+    (1..1).each do |i|
+      config.vm.define "bastian-77-acceptatie-db#{i}" do |db_config|
         db_config.vm.box = "ubuntu/focal64"
-        db_config.vm.hostname = "klantnaam-db#{i}"
-        db_config.vm.network :private_network, ip: "192.168.ipaddress.4#{i}"
+        db_config.vm.hostname = "bastian-77-acceptatie-db#{i}"
+        db_config.vm.network :private_network, ip: "192.168.77.4#{i}"
         db_config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
         db_config.vm.provision :hostmanager
         db_config.vm.provider "virtualbox" do |vb|
-          vb.memory = "{{ db_memory }}"
+          vb.memory = "2048"
           vb.gui = false
-          vb.name = "klantnaam-db#{i}"
+          vb.name = "bastian-77-acceptatie-db#{i}"
         end
       end
     end

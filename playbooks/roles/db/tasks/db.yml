@@ -1,0 +1,26 @@
+---
+- name: voeg db toe aan webdb
+  mysql_db:
+    name: webdb
+    state: present
+
+- name: voeg data aan webdb toe
+  copy:
+    src: dump.sql
+    dest: /tmp/dump.sql
+
+- name: insert data binnen webdb
+  mysql_db:
+    name: webdb
+    state: import
+    target: /tmp/dump.sql
+    login_user: "{{ mysql_root_username }}"
+    login_password: "{{ mysql_root_password }}"
+
+- name: maak mysql gebruik aan voor toegang
+  mysql_user:
+    user: php
+    host: "{{ item }}"
+    password: webdb-user
+    priv: "webserver.*:ALL,GRANT"
+  with_items: "{{ groups['webservers'] }}"

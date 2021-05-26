@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #klantgegevens doorsturen
-nieuwe_omgeving() {
+nieuwe_omgeving(){
 
     #Vraag $_klantnaam en $_klantnummer
     read -p "Klantnaam: " _klantnaam
@@ -10,28 +10,55 @@ nieuwe_omgeving() {
     echo "_klantnummer=$_klantnummer" > /home/VM2/klanten/klantnummer.sh
 
     #vraag om type en maak mappen structuur aan
-    read -p "Omgeving type [ontwikkel/test/acceptatie/productie]: " _type
+    read -p "Omgeving type [ontwikkel/test/acceptatie/productie] [default acceptatie]: " _type
+        if [ $_type -eq ""]; then
+            _type="acceptatie"
+        fi
     echo
 
-    #Webservers configureren
-    read -p "Wilt u webservers [true/false] ?: " WEB
-    if [ $WEB == "true" ]; then
-        read -p "Hoeveel webservers?: " WEB_AANTAL
-        read -p "Hoeveel geheugen wilt u?: " WEB_MEMORY
+    #Webservers vraag
+    read -p "Wilt u webservers [true/false] [DEFAULT true]?: " WEB
+        if [ $WEB -eq ""]; then
+            WEB="true"
+        fi
+    if [ "$WEB" == "true" ]; then
+        read -p "Hoeveel webservers [DEFAULT 2]?: " WEB_AANTAL
+            if [ $WEB_AANTAL -eq ""]; then
+                WEB_AANTAL="2"
+            fi
+        read -p "Hoeveel geheugen wilt u [DEFAULT 1024]?: " WEB_MEMORY
+            if [ $WEB_MEMORY -eq ""]; then
+                WEB_MEMORY="1024"
+            fi
     else
         WEB_AANTAL=0
         WEB_MEMORY=0
     fi
     echo
 
-    #loadbalancers configureren (ontwikkel en test krijgen geen loadbalancers)
+    #loadbalancers vraag (ontwikkel en test krijgen geen loadbalancers)
     if [ "$_type" == "acceptatie" ] || [ "$_type" == "productie" ]; then
-        read -p "Wilt u loadbalancers [true/false] ?: " LB
-        if [ $LB == "true" ]; then
-            read -p "Hoeveel loadbalancers?: " LB_AANTAL
-            read -p "Hoeveel geheugen wilt u?: " LB_MEMORY
-            read -p "Op welke poort draait de loadbalancer?: " LB_PORT
-            read -p "Op welke poort draait de stats van de loadbalancer?: " LB_STATS_PORT
+        read -p "Wilt u loadbalancers [true/false] [DEFAULT true]?: " LB
+            if [ $LB -eq ""]; then
+                LB="true"
+            fi
+        if [ "$LB" == "true" ]; then
+            read -p "Hoeveel loadbalancers [DEFAULT 1]?: " LB_AANTAL
+                if [ $LB_AANTAL -eq ""]; then
+                    LB_AANTAL="1"
+                fi
+            read -p "Hoeveel geheugen wilt u [DEFAULT 1024]?: " LB_MEMORY
+                if [ $LB_MEMORY -eq ""]; then
+                    LB_MEMORY="1024"
+                fi
+            read -p "Op welke poort draait de loadbalancer [DEFAULT 80]?: " LB_PORT
+                if [ $LB_PORT -eq ""]; then
+                    LB_PORT="80"
+                fi
+            read -p "Op welke poort draait de stats van de loadbalancer [DEFAULT 8080]?: " LB_STATS_PORT
+                if [ $LB_STAT_PORT -eq ""]; then
+                    LB_STATS_PORT="8080"
+                fi
         else
             LB_AANTAL=0
             LB_MEMORY=0
@@ -41,79 +68,66 @@ nieuwe_omgeving() {
     fi
     echo
 
-    #databases configureren
-    read -p "Wilt u databaseservers [true/false] ?: " DB
+    #databases vraag
+    read -p "Wilt u databaseservers [true/false] [DEFAULT true]?: " DB
+        if [ $DB -eq ""]; then
+            DB="true"
+        fi
     if [ $DB == "true" ]; then
-        read -p "Hoeveel databaseservers?: " DB_AANTAL
-        read -p "Hoeveel geheugen wilt u?: " DB_MEMORY
+        read -p "Hoeveel databaseservers [DEFAULT 1]?: " DB_AANTAL
+            if [ $DB_AANTAL -eq ""]; then
+                DB_AANTAL="1"
+            fi
+        read -p "Hoeveel geheugen wilt u [DEFAULT 2048]?: " DB_MEMORY
+            if [ $DB_MEMORY -eq ""]; then
+                DB_MEMORY="2048"
+            fi
     else
         DB_AANTAL=0
         DB_MEMORY=0
     fi
     echo
 
-    #netwerk configuratie
-    DESTINATION="/home/VM2/klanten/$_klantnaam-$_klantnummer"/"$_type"
+    #directory configureren en aanmaken
+    _klantdir="/home/VM2/klanten/$_klantnaam-$_klantnummer"/"$_type"
     cd /home/VM2/klanten
     mkdir "$_klantnaam-$_klantnummer"
     cd "$_klantnaam-$_klantnummer"
     mkdir "$_type"
     cd "$_type"
     cp /home/VM2/template-omgeving/config.txt /home/VM2/klanten/"$_klantnaam-$_klantnummer"/"$_type"
-
 }
 
 #map aanmaken en omgeving kopieren
-copy_files() {
+copy_file(){
     cp /home/VM2/template-omgeving/Vagrantfile /home/VM2/klanten/"$_klantnaam-$_klantnummer"/"$_type"/Vagrantfile
     sed -i "s/klantnaam/$_klantnaam-$_klantnummer-$_type/g" Vagrantfile
     sed -i "s/ipaddress/$_klantnummer/g" Vagrantfile
     cp /home/VM2/template-omgeving/ansible.cfg /home/VM2/klanten/"$_klantnaam-$_klantnummer"/"$_type"/ansible.cfg
 
-    inventoryfile
+    inventory_file
 
     #sla properties op in settings.txt
-    echo "ENVIRONMENT=$_type" >>$DESTINATION/config.txt
-    # echo "=$" >>$DESTINATION/config.txt
-    echo "WEB=$WEB" >>$DESTINATION/config.txt
-    echo "WEB_AANTAL=$WEB_AANTAL" >>$DESTINATION/config.txt
-    echo "WEB_MEMORY=$WEB_MEMORY" >>$DESTINATION/config.txt
-    echo "LB=$LB" >>$DESTINATION/config.txt
-    echo "LB_AANTAL=$LB_AANTAL" >>$DESTINATION/config.txt
-    echo "LB_MEMORY=$LB_MEMORY" >>$DESTINATION/config.txt
-    echo "LB_PORT=$LB_PORT" >>$DESTINATION/config.txt
-    echo "LB_STATS_PORT=$LB_STATS_PORT" >>$DESTINATION/config.txt
-    echo "DB=$DB" >>$DESTINATION/config.txt
-    echo "DB_AANTAL=$DB_AANTAL" >>$DESTINATION/config.txt
-    echo "DB_MEMORY=$DB_MEMORY" >>$DESTINATION/config.txt
-}
-
-#Vagrant file web-variabelen veranderen
-webservers(){
-    sed -i "s/{{ web }}/$WEB/g" "$DESTINATION/Vagrantfile"
-    sed -i "s/{{ web_aantal }}/$WEB_AANTAL/g" "$DESTINATION/Vagrantfile"
-    sed -i "s/{{ web_memory }}/$WEB_MEMORY/g" "$DESTINATION/Vagrantfile"
-}
-
-#Vagrant file lb-variabelen veranderen
-loadbalancers(){
-    sed -i "s/{{ lb }}/$LB/g" "$DESTINATION/Vagrantfile"
-    sed -i "s/{{ lb_aantal }}/$LB_AANTAL/g" "$DESTINATION/Vagrantfile"
-    sed -i "s/{{ lb_memory }}/$LB_MEMORY/g" "$DESTINATION/Vagrantfile"
-}
-
-#Vagrant file db-variabelen veranderen
-databaseservers(){
-    sed -i "s/{{ db }}/$DB/g" "$DESTINATION/Vagrantfile"
-    sed -i "s/{{ db_aantal }}/$DB_AANTAL/g" "$DESTINATION/Vagrantfile"
-    sed -i "s/{{ db_memory }}/$DB_MEMORY/g" "$DESTINATION/Vagrantfile"
+    echo "ENVIRONMENT=$_type" >>$_klantdir/config.txt
+    # echo "=$" >>$_klantdir/config.txt
+    echo "WEB=$WEB" >>$_klantdir/config.txt
+    echo "WEB_AANTAL=$WEB_AANTAL" >>$_klantdir/config.txt
+    echo "WEB_MEMORY=$WEB_MEMORY" >>$_klantdir/config.txt
+    echo "LB=$LB" >>$_klantdir/config.txt
+    echo "LB_AANTAL=$LB_AANTAL" >>$_klantdir/config.txt
+    echo "LB_MEMORY=$LB_MEMORY" >>$_klantdir/config.txt
+    echo "LB_PORT=$LB_PORT" >>$_klantdir/config.txt
+    echo "LB_STATS_PORT=$LB_STATS_PORT" >>$_klantdir/config.txt
+    echo "DB=$DB" >>$_klantdir/config.txt
+    echo "DB_AANTAL=$DB_AANTAL" >>$_klantdir/config.txt
+    echo "DB_MEMORY=$DB_MEMORY" >>$_klantdir/config.txt
 }
 
 #Inventory.ini aanmaken
-inventoryfile(){
-    if [ -f "$DESTINATION/inventory.ini" ]; then
+inventory_file(){
+    if [ -f "$_klantdir/inventory.ini" ]; then
         echo "Inventory file bestaat nog, de oude wordt verwijderd."
-        rm $DESTINATION/inventory.ini
+        rm $_klantdir/inventory.ini
     fi
     
     #aanmaken inventory file
@@ -122,44 +136,57 @@ inventoryfile(){
     # sed -i "s/ipaddress/$_klantnummer/g" inventory.ini
 
     #aanmaken inventory file
-    touch $DESTINATION/inventory.ini
+    touch $_klantdir/inventory.ini
 
     #Add web to Inventory
     if [ $WEB == "true" ]; then
-        echo "[webservers]" >>$DESTINATION/inventory.ini
+        echo "[webservers]" >>$_klantdir/inventory.ini
         COUNTER=0
         while [ $COUNTER -lt $WEB_AANTAL ]; do
             COUNTER=$(expr $COUNTER + 1)
-            echo "192.168.$_klantnummer.2$COUNTER" >>$DESTINATION/inventory.ini
+            echo "192.168.$_klantnummer.2$COUNTER" >>$_klantdir/inventory.ini
         done
-        echo "" >>$DESTINATION/inventory.ini
+        echo "" >>$_klantdir/inventory.ini
     fi
 
     #Add lb to Inventory
     if [ $LB == "true" ]; then
-        echo "[loadbalancers]" >>$DESTINATION/inventory.ini
+        echo "[loadbalancers]" >>$_klantdir/inventory.ini
         COUNTER=0
         while [ $COUNTER -lt $LB_AANTAL ]; do
             COUNTER=$(expr $COUNTER + 1)
-            echo "192.168.$_klantnummer.3$COUNTER" >>$DESTINATION/inventory.ini
+            echo "192.168.$_klantnummer.3$COUNTER" >>$_klantdir/inventory.ini
         done
-        echo "" >>$DESTINATION/inventory.ini
-        echo "[loadbalancers:vars]" >>$DESTINATION/inventory.ini
-        echo "bind_port=$LB_PORT" >>$DESTINATION/inventory.ini
-        echo "stats_port=$LB_STATS_PORT" >>$DESTINATION/inventory.ini
-        echo "" >>$DESTINATION/inventory.ini
+        echo "" >>$_klantdir/inventory.ini
+        echo "[loadbalancers:vars]" >>$_klantdir/inventory.ini
+        echo "bind_port=$LB_PORT" >>$_klantdir/inventory.ini
+        echo "stats_port=$LB_STATS_PORT" >>$_klantdir/inventory.ini
+        echo "" >>$_klantdir/inventory.ini
     fi
 
     #Add db to Inventory
     if [ $DB == "true" ]; then
-        echo "[databaseservers]" >>$DESTINATION/inventory.ini
+        echo "[databaseservers]" >>$_klantdir/inventory.ini
         COUNTER=0
         while [ $COUNTER -lt $DB_AANTAL ]; do
             COUNTER=$(expr $COUNTER + 1)
-            echo "192.168.$_klantnummer.4$COUNTER" >>$DESTINATION/inventory.ini
+            echo "192.168.$_klantnummer.4$COUNTER" >>$_klantdir/inventory.ini
         done
-        echo "" >>$DESTINATION/inventory.ini
+        echo "" >>$_klantdir/inventory.ini
     fi
+}
+
+#Vagrant file web/lb/db-variabelen veranderen
+vagrant_file(){
+    sed -i "s/{{ web }}/$WEB/g" "$_klantdir/Vagrantfile"
+    sed -i "s/{{ web_aantal }}/$WEB_AANTAL/g" "$_klantdir/Vagrantfile"
+    sed -i "s/{{ web_memory }}/$WEB_MEMORY/g" "$_klantdir/Vagrantfile"
+    sed -i "s/{{ lb }}/$LB/g" "$_klantdir/Vagrantfile"
+    sed -i "s/{{ lb_aantal }}/$LB_AANTAL/g" "$_klantdir/Vagrantfile"
+    sed -i "s/{{ lb_memory }}/$LB_MEMORY/g" "$_klantdir/Vagrantfile"
+    sed -i "s/{{ db }}/$DB/g" "$_klantdir/Vagrantfile"
+    sed -i "s/{{ db_aantal }}/$DB_AANTAL/g" "$_klantdir/Vagrantfile"
+    sed -i "s/{{ db_memory }}/$DB_MEMORY/g" "$_klantdir/Vagrantfile"
 }
 
 #voor verwijderen omgeving
@@ -178,18 +205,18 @@ vagrant_edit(){
     read -p "Wat is uw klantnaam?: " _editklantnaam
     read -p "Wat is uw klantnummer: " _editklantnummer
     _editklant="$_editklantnaam-$_editklantnummer"
-    read -p "Welke omgeving wilt u aanpassen [test, acceptatie, productie]? " _editomgeving
+    read -p "Welke omgeving wilt u aanpassen [test, acceptatie, productie]? " _type
 
-    #Set Destination naar huidige klant
-    DESTINATION="/home/VM2/klanten/$_editklant/$_editomgeving"
+    #Set _klantdir naar huidige klant
+    _klantdir="/home/VM2/klanten/$_editklant/$_type"
 
-    #kopieer information from config.txt
-    source "$DESTINATION/config.txt"
+    #kopieer informatie from config.txt
+    source "$_klantdir/config.txt"
     WEB_AANTAL_OLD=$WEB_AANTAL
     LB_AANTAL_OLD=$LB_AANTAL
     DB_AANTAL_OLD=$DB_AANTAL
 
-    #Verander klant webserver
+    #Verander klant-webserver
     read -p "Wilt u de webservers aanpassen? [true/false]: " _edit_web
 
     if [ $_edit_web == "true" ]; then
@@ -197,8 +224,8 @@ vagrant_edit(){
         read -p "Hoeveel geheugen wilt u? [Op dit moment heeft u $WEB_MEMORY] " WEB_MEMORY
     fi
 
-    #Verander klant loadbalancer
-    if [ "$_editomgeving" == "acceptatie" ] || [ "$_editomgeving" == "productie" ]; then
+    #Verander klant-loadbalancer
+    if [ "$_type" == "acceptatie" ] || [ "$_type" == "productie" ]; then
         read -p "Wilt u de loadbalancers aanpassen? [true/false]: " _edit_lb
         if [ $edit_LB == "true" ]; then
             read -p "Hoeveel loadbalancers wilt u? [Op dit moment zijn er $LB_AANTAL] " LB_AANTAL
@@ -208,66 +235,60 @@ vagrant_edit(){
         fi
     fi
 
-    #Change customers databaseservers
+    #verander klant-database
     read -p "Wilt u de databaseservers aanpassen? [true/false]: " edit_lb
 
     if [ $edit_db == "true" ]; then
         read -p "Hoeveel databaseservers wilt u? [Op dit moment zijn er $DB_AANTAL] " DB_AANTAL
         read -p "Hoeveel geheugen wilt u? [Op dit moment heeft u $DB_MEMORY] " DB_MEMORY
     fi
-
     while [ $WB_AANTAL -lt $WB_AANTAL_OLD ]; do
-        (cd $DESTINATION && vagrant destroy "$editklant-$editomgeving-web$WB_AANTAL_OLD" -f)
+        (cd $_klantdir && vagrant destroy "$_editklant-$_type-web$WB_AANTAL_OLD" -f)
         WB_AANTAL_OLD=$(expr $WB_AANTAL_OLD - 1)
     done
-
     while [ $LB_AANTAL -lt $LB_AANTAL_OLD ]; do
-        (cd $DESTINATION && vagrant destroy "$editklant-$editomgeving-loadbalancer$LB_AANTAL_OLD" -f)
+        (cd $_klantdir && vagrant destroy "$_editklant-$_type-loadbalancer$LB_AANTAL_OLD" -f)
         LB_AANTAL_OLD=$(expr $LB_AANTAL_OLD - 1)
     done
-
     while [ $DB_AANTAL -lt $DB_AANTAL_OLD ]; do
-        (cd $DESTINATION && vagrant destroy "$editklant-$editomgeving-database$DB_AANTAL_OLD" -f)
+        (cd $_klantdir && vagrant destroy "$_editklant-$_type-database$DB_AANTAL_OLD" -f)
         DB_AANTAL_OLD=$(expr $DB_AANTAL_OLD - 1)
     done
 
-    rm "$DESTINATION/Vagrantfile"
-    rm "$DESTINATION/config.txt"
-    rm "$DESTINATION/inventory.ini"
-    rm "$DESTINATION/ansible.cfg"
-    copy_files
-    sed -i "s/{{ hostname_default }}/$editklant-$editomgeving-/g" "$DESTINATION/Vagrantfile"
-    sed -i "s/ipaddress/$_editklantnummer/g" "$DESTINATION/Vagrantfile"
-    webservers
-    loadbalancers
-    databaseservers
-    (cd $DESTINATION && vagrant reload)
-    (cd $DESTINATION && vagrant up)
+    rm "$_klantdir/Vagrantfile"
+    rm "$_klantdir/config.txt"
+    rm "$_klantdir/inventory.ini"
+    rm "$_klantdir/ansible.cfg"
+    copy_file
+    sed -i "s/{{ hostname_default }}/$_editklant-$_type-/g" "$_klantdir/Vagrantfile"
+    sed -i "s/ipaddress/$_editklantnummer/g" "$_klantdir/Vagrantfile"
+    echo
+    echo "####################################################"
+    echo "#####             Even geduld a.u.b.           #####"
+    echo "#####    $_type omgeving wordt aangepast      #####"
+    echo "####################################################"
+    echo
+    vagrant_file
+    (cd $_klantdir && vagrant reload)
+    (cd $_klantdir && vagrant up)
     sleep 1m
-    (cd $DESTINATION && ansible-playbook /home/VM2/playbooks/production.yml)
+    (cd $_klantdir && ansible-playbook /home/VM2/playbooks/playbook.yml)
     exit 0
 }
 
 #Voor nieuwe klanten
-vagrant_main(){
+vagrant_nieuw(){
     nieuwe_omgeving
-    copy_files
-    #sed -i "s/{{ hostname_default }}/$
-    #sed subnet
-        # cp /home/VM2/template-omgeving/Vagrantfile /home/VM2/klanten/"$_klantnaam-$_klantnummer"/"$_type"/Vagrantfile
-        # sed -i "s/klantnaam/$_klantnaam-$_klantnummer-$_type/g" Vagrantfile
-        # sed -i "s/ipaddress/$_klantnummer/g" Vagrantfile"
+    copy_file
     echo
     echo "####################################################"
     echo "#####             Even geduld a.u.b.           #####"
     echo "#####    $_type omgeving wordt aangemaakt      #####"
     echo "####################################################"
     echo
-    webservers
-    loadbalancers
-    databaseservers
-    (cd $DESTINATION && vagrant up)
-    (cd $DESTINATION && ansible-playbook /home/VM2/playbooks/playbook.yml)
+    vagrant_file
+    (cd $_klantdir && vagrant up)
+    (cd $_klantdir && ansible-playbook /home/VM2/playbooks/playbook.yml)
 }
 
 #----------------------------------------------------------------------------
@@ -341,23 +362,28 @@ vagrant_main(){
 echo
 echo "######################################"
 echo "#####    Bastian's SSP script    #####"
+echo "#####    S1139625                #####"
 echo "######################################"
 echo
 
-# Main Menu
-echo "Welkom bij het Self-Service-Portal"
+# Startmenu
+echo "Welkom bij mijn Self-Service-Portal"
 echo "1.) Nieuwe Klant"
-echo "2.) Verwijder Klant"
-echo "3.) Pas bestaande klant aan"
-read -p "Kies welke service u nodig heeft: " KEUZE
+echo "2.) Pas bestaande klant aan"
+echo "3.) Verwijder Klant"
+read -p "Kies welke service u nodig heeft [default 1]: " _keuze
+    if [ $_keuze == "" ]; then
+        _keuze="1"
+    fi
+
 echo
 
-if [ $KEUZE == "1" ]; then
-    vagrant_main
-elif [ $KEUZE == "2" ]; then
-    vagrant_destroy
-elif [ $KEUZE == "3" ]; then
+if [ $_keuze == "1" ]; then
+    vagrant_nieuw
+elif [ $_keuze == "2" ]; then
     vagrant_edit
+elif [ $_keuze == "3" ]; then
+    vagrant_destroy
 else
     exit 0
 fi
