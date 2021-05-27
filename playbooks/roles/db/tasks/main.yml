@@ -1,35 +1,28 @@
 ---
-- name: install MySQL
-  package:
-    update_cache: yes
+- name: installeer mysql
+  apt:
     name:
       - python3-pip
       - mysql-server
       - mysql-client
     state: present
+    update_cache: yes
 
-- name: install pymysql
+- name: installeer pymysql
   pip:
     name: pymysql
     state: present
 
-- name: start and enable mysql service
-  service:
-    name: mysql
-    state: started
-    enabled: yes
-
-- name: add config file
+- name: voeg config file toe
   template:
-    src: my.cnf.j2
+    src: "my.cnf.j2"
     dest: "/etc/mysql/mysql.cnf"
     owner: root
     group: root
     mode: 0644
   notify:
-  - restart mysql-server
 
-  - name: add my.cnf to root
+- name: voeg config file aan root toe
   template:
     src: "root-my.cnf.j2"
     dest: "/root/.my.cnf"
@@ -39,7 +32,7 @@
   notify:
   - restart mysql-server
 
-- name: ensure default user is present
+- name: maak default gebruiker aan
   become: true
   mysql_user:
     login_user: "{{ mysql_root_username }}"
@@ -50,76 +43,48 @@
     priv: '*.*:ALL,GRANT'
     login_unix_socket: /var/run/mysqld/mysqld.sock
 
-- include_tasks: secure.yml
+- name: verwijder mysql test db
+  mysql_db:
+    name: test
+    state: absent
 
-- include_tasks: database.yml
-...
+- name: verwijder anonieme mysql user
+  mysql_user:
+    name: ''
+    host_all: yes
+    state: absent
 
-# ---
-# - name: installeer mysql
-#   package:
-#     update_cache: yes
-#     name:
-#       - python3-pip
-#       - mysql-server
-#       - mysql-client
-#     state: present
+- name: voeg database toe toe aan webdb
+  mysql_db:
+    name: webdb
+    state: present
 
-# - name: installeer pymysql
-#   pip:
-#     name: pymysql
-#     state: present
+- name: maak mysql gebruiker aan voor toegang
+  mysql_user:
+    user: apache
+    host: "{{ item }}"
+    password: 'apache'
+    priv: 'webdb.*:ALL,GRANT'
+    state: present
+  with_items: "{{ groups['webservers'] }}"
 
-# - name: start and enable mysql service
-#   service:
-#     name: mysql
-#     state: started
-#     enabled: yes
+- name: voeg data aan webdb toe
+  copy:
+    src: template.sql
+    dest: /tmp/template.sql
 
-# # - name: Installeer mysql
-# #   package:
-# #     update_cache: yes
-# #     name:
-# #      - python3-pip
-# #      - mysql-server
-# #      - mysql-client
-# #     state: present
-
-# # - name: start mySQL-server
-# #   service:
-# #     name: mysql
-# #     state: started
-# #     enabled: yes
-
-# - name: voeg config file toe
-#   template:
-#     src: my.cnf
-#     dest: "/etc/mysql/mysql.cnf"
-#     owner: root
-#     group: root
-#     mode: 0644
-#   notify:
-#   - restart mysql-server
-
-# - name: voeg config file aan root toe
-#   template:
-#     src: "root-my.cnf"
-#     dest: "/root/.my.cnf"
-#     owner: root
-#     group: root
-#     mode: 0600
-#   notify:
-#   - restart mysql-server
-
-
+- name: insert webdb data
+  mysql_db:
+    name: webdb
+    state: import
+    target: /tmp/template.sql
+    login_user: "{{ mysql_root_username }}"
+    login_password: "{{ mysql_root_password }}"
 
 # # - name: create deploy user
 # #   mysql_user: user=vagrant host=localhost password=vagrant priv=*.*:ALL,GRANT
-
 # # - name: create net-user priv
 # #   mysql_user: user=vagrant host=% password=vagrant priv=*.*:ALL,GRANT
-
-
 
 # # - name: restart mysql
 # #   service: name=mysql state=started
@@ -160,5 +125,10 @@
 # #     state: import
 # #     target: "/tmp/template-database.sql"
 
-# - include_tasks: remove.yml
-# - include_tasks: db.yml
+- name: start and enable mysql service
+  service:
+    name: mysql
+    state: started
+    enabled: yes
+  notify:
+  - restart mysql-server

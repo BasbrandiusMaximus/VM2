@@ -11,23 +11,23 @@ nieuwe_omgeving(){
 
     #vraag om type en maak mappen structuur aan
     read -p "Omgeving type [ontwikkel/test/acceptatie/productie] [default acceptatie]: " _type
-        if [ $_type -eq ""]; then
+        if [[ $_type -eq "" ]]; then
             _type="acceptatie"
         fi
     echo
 
     #Webservers vraag
     read -p "Wilt u webservers [true/false] [DEFAULT true]?: " WEB
-        if [ $WEB -eq ""]; then
+        if [[ $WEB -eq "" ]]; then
             WEB="true"
         fi
     if [ "$WEB" == "true" ]; then
-        read -p "Hoeveel webservers [DEFAULT 2]?: " WEB_AANTAL
-            if [ $WEB_AANTAL -eq ""]; then
+        read -p "Aantal webservers [DEFAULT 2]: " WEB_AANTAL
+            if [[ $WEB_AANTAL -eq "" ]]; then
                 WEB_AANTAL="2"
             fi
-        read -p "Hoeveel geheugen wilt u [DEFAULT 1024]?: " WEB_MEMORY
-            if [ $WEB_MEMORY -eq ""]; then
+        read -p "Geheugen webservers [DEFAULT 1024(MB)]: " WEB_MEMORY
+            if [[ $WEB_MEMORY -eq "" ]]; then
                 WEB_MEMORY="1024"
             fi
     else
@@ -37,26 +37,26 @@ nieuwe_omgeving(){
     echo
 
     #loadbalancers vraag (ontwikkel en test krijgen geen loadbalancers)
-    if [ "$_type" == "acceptatie" ] || [ "$_type" == "productie" ]; then
+    if [[ "$_type" == "acceptatie" ]] || [[] "$_type" == "productie" ]]; then
         read -p "Wilt u loadbalancers [true/false] [DEFAULT true]?: " LB
-            if [ $LB -eq ""]; then
+            if [[ $LB -eq "" ]]; then
                 LB="true"
             fi
         if [ "$LB" == "true" ]; then
-            read -p "Hoeveel loadbalancers [DEFAULT 1]?: " LB_AANTAL
-                if [ $LB_AANTAL -eq ""]; then
+            read -p "Aantal loadbalancers [DEFAULT 1]: " LB_AANTAL
+                if [[ $LB_AANTAL -eq "" ]]; then
                     LB_AANTAL="1"
                 fi
-            read -p "Hoeveel geheugen wilt u [DEFAULT 1024]?: " LB_MEMORY
-                if [ $LB_MEMORY -eq ""]; then
+            read -p "Geheugen loadbalancers [DEFAULT 1024(MB)]: " LB_MEMORY
+                if [[ $LB_MEMORY -eq "" ]]; then
                     LB_MEMORY="1024"
                 fi
-            read -p "Op welke poort draait de loadbalancer [DEFAULT 80]?: " LB_PORT
-                if [ $LB_PORT -eq ""]; then
+            read -p "Port loadbalancer [DEFAULT 80]: " LB_PORT
+                if [[ $LB_PORT -eq "" ]]; then
                     LB_PORT="80"
                 fi
-            read -p "Op welke poort draait de stats van de loadbalancer [DEFAULT 8080]?: " LB_STATS_PORT
-                if [ $LB_STAT_PORT -eq ""]; then
+            read -p "Port stats loadbalancer [DEFAULT 8080]: " LB_STATS_PORT
+                if [[ $LB_STAT_PORT -eq "" ]]; then
                     LB_STATS_PORT="8080"
                 fi
         else
@@ -70,16 +70,16 @@ nieuwe_omgeving(){
 
     #databases vraag
     read -p "Wilt u databaseservers [true/false] [DEFAULT true]?: " DB
-        if [ $DB -eq ""]; then
+        if [[ $DB -eq "" ]]; then
             DB="true"
         fi
     if [ $DB == "true" ]; then
-        read -p "Hoeveel databaseservers [DEFAULT 1]?: " DB_AANTAL
-            if [ $DB_AANTAL -eq ""]; then
+        read -p "Aantal databaseservers [DEFAULT 1]: " DB_AANTAL
+            if [[ $DB_AANTAL -eq "" ]]; then
                 DB_AANTAL="1"
             fi
-        read -p "Hoeveel geheugen wilt u [DEFAULT 2048]?: " DB_MEMORY
-            if [ $DB_MEMORY -eq ""]; then
+        read -p "Geheugen databaseservers [DEFAULT 2048(MB)]?: " DB_MEMORY
+            if [[ $DB_MEMORY -eq "" ]]; then
                 DB_MEMORY="2048"
             fi
     else
@@ -130,11 +130,6 @@ inventory_file(){
         rm $_klantdir/inventory.ini
     fi
     
-    #aanmaken inventory file
-    # cp /home/VM2/template-omgeving/inventory.ini /home/VM2/klanten/$_klantnaam-$_klantnummer/$_type"/inventory.ini
-    # sed -i "s/klantnaam/$_klantnaam-$_klantnummer-$_type/g" inventory.ini
-    # sed -i "s/ipaddress/$_klantnummer/g" inventory.ini
-
     #aanmaken inventory file
     touch $_klantdir/inventory.ini
 
@@ -291,74 +286,6 @@ vagrant_nieuw(){
     (cd $_klantdir && ansible-playbook /home/VM2/playbooks/playbook.yml)
 }
 
-#----------------------------------------------------------------------------
-#deprecated code
-# echo "Heeft u al een account of bent u nieuw hier?"
-# echo "(optie 1)nieuw  of (optie 2)bestaand"
-# read -p "Optie: " _optie
-# echo "$_optie"
-
-# if [ "$_optie" -eq "1" ]
-# then
-#proces voor bestaande klanten start
-
-    #provisionen op basis van type omgeving
-
-        #SSH-keys aanmaken
-        # echo "SSH-keys aanmaken"
-        # echo "192.168.$_klantnummer.21  $_klantnaam-$_klantnummer-$_type-web1" | sudo tee -a /etc/hosts > /dev/null
-        # ssh-keyscan $_klantnaam-$_klantnummer-$_type-web1 192.168.$_klantnummer.21 >> ~/.ssh/known_hosts
-        # ssh-keyscan $_klantnaam-$_klantnummer-$_type-web2 192.168.$_klantnummer.22 >> ~/.ssh/known_hosts
-        # ssh-keyscan $_klantnaam-$_klantnummer-$_type-lb1 192.168.$_klantnummer.31 >> ~/.ssh/known_hosts
-        # ssh-keyscan $_klantnaam-$_klantnummer-$_type-db1 192.168.$_klantnummer.41 >> ~/.ssh/known_hosts
-
-
-        #uitvoeren ansible op basis van type voor ieder aanwezige type
-        # cp /home/VM2/template-omgeving/ansible.cfg /home/VM2/klanten/"$_klantnaam-$_klantnummer"/"$_type"/ansible.cfg
-        #web
-        # ansible-playbook /home/VM2/playbooks/web.yml
-        # #lb
-        # ansible-playbook /home/VM2/playbooks/lb.yml
-        # #db
-        # # ansible-playbook -i inventory.yml /home/VM2/playbooks/db.yml
-
-# elif then
-    #proces voor bestaande klanten start
-#     echo "Bestaande-klant functie nog niet aanwezig"
-
-#     #naam vragen
-#     echo"Wat is uw naam en nummer?"
-#     read -p "Naam: " _klantnaam
-#     read -p "Nummer: " _klantnummer
-#     echo "welkom $_klantnaam-$_klantnummer"
-
-#     #opties vragen
-#     echo"Wat wilt u doen?"
-#     echo"Omgeving: (optie 1) verwijderen, (optie 2) wijzigen, (optie 3) uitbreiden"
-#     read -p "Naam: " _aanvraag
-#     if ["$_aanvraag" -eq "verwijderen"]
-#     then
-#         #bestaande omgeving verwijderen
-#         echo "#######################################"
-#         echo "####     omgeving verwijderen     #####"
-#         echo "#######################################"
-#     elif ["$_aanvraag" -eq "wijzigen"]
-#     then
-#         #bestaande omgeving aanpassen
-#         echo "#######################################"
-#         echo "####      omgeving wijzigen       #####"
-#         echo "#######################################"
-#     else
-#         #geen beschikbare optie dus ongeldig
-#         echo "ongeldige keuze"
-#     fi
-
-# # else
-#     #niet nieuw of bestaande klant dus ongeldig
-#     echo "ongeldige optie"
-# fi
-
-#------------------------------------------------------------------------------------------------------------------------
 echo
 echo "######################################"
 echo "#####    Bastian's SSP script    #####"

@@ -1,0 +1,62 @@
+<!DOCTYPE php>
+<html>
+    <head>
+        <title>
+            Naam
+        </title>
+    </head>
+    <body>
+    <h1>test</h1>
+    <?php
+
+     <?php
+    $servername = "localhost";
+    $username = "username";
+    $password = "password";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password);
+
+    // Check connection
+    if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+    }
+    echo "Connected successfully";
+    $conn->close
+    ?> 
+
+    
+    //$server = "{{ groups['databaseservers'][0] }}";
+    //echo "<h1>"+$server+"</h1>";
+    //$username = "apache";
+    //echo "<h1>"+$username+"</h1>";
+    //$password = "apache"
+    //echo "<h1>"+$password+"</h1>";
+    //$dbname = "webdb";
+    //echo "$dbname";
+
+    //echo "Dit is de webserver met adres ";
+    //echo $_SERVER[ 'SERVER_ADDR' ];
+
+    //$connection= new mysqli($server, $username, $password, $dbname);
+    // Check connection
+    //if ($mysqli -> connect_error) {
+    //  echo ("Failed to connect to MySQL: " . $connection -> connect_error);
+    //}
+
+    //$sql = "SELECT Voornaam, Achternaam FROM city";
+    //$result = $connection->query($sql);
+
+    //if ($result->num_rows > 0) {
+    //    echo "<table><tr><th>Voornaam</th><th>Achternaam</th></table>"
+    //    whille($row = $result -> fetch_assoc()) {
+    //        echo "<tr><td>".$row["Voornaam"]."</td><td>".$row["Achternaam"]."</td></tr>"
+    //        }
+    //    echo "</table>"
+    //} else {
+    //    echo "0 results";
+    //}
+    //$conn->close();
+    ?> 
+    </body>
+</html>
