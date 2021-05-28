@@ -3,7 +3,7 @@
   apt:
     update_cache: yes
 
-- name: Installeer php, apache2, mysql-client, php-mysql
+- name: Installeer php, apache2, mysql-client en php-mysql
   become: yes
   become_user: root
   apt:
