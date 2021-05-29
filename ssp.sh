@@ -16,7 +16,7 @@ copy_file(){
     #aanmaken inventory file
     touch $_klantdir/inventory.ini
 
-    #Add web to Inventory
+    #voeg web toe aan inventory
     if [ $WEB == "true" ]; then
         echo "[webservers]" >>$_klantdir/inventory.ini
         COUNTER=0
@@ -27,7 +27,7 @@ copy_file(){
         echo "" >>$_klantdir/inventory.ini
     fi
 
-    #Add lb to Inventory
+    #voeg lb toe aan inventory
     if [[ $LB == "true" ]]; then
         echo "[loadbalancers]" >>$_klantdir/inventory.ini
         COUNTER=0
@@ -42,7 +42,7 @@ copy_file(){
         echo "" >>$_klantdir/inventory.ini
     fi
 
-    #Add db to Inventory
+    #voeg db toe aan inventory
     if [ $DB == "true" ]; then
         echo "[databaseservers]" >>$_klantdir/inventory.ini
         COUNTER=0
@@ -245,8 +245,7 @@ vagrant_nieuw(){
     echo
 
     #loadbalancers vraag (ontwikkel en test krijgen geen loadbalancers)
-    if [ $_type -eq "acceptatie" ]; then
-        echo test 1
+    if [[ $_type == "acceptatie" ]]; then
         echo "##### Loadbalancers ###############"
         read -p "Wilt u loadbalancers [true/false] [DEFAULT true]?: " LB
             if [[ $LB == "" ]]; then
@@ -276,7 +275,6 @@ vagrant_nieuw(){
             LB_MEMORY=0
             LB_PORT=80
             LB_STATS_PORT=8080
-            echo test 2
     fi
     echo
 
