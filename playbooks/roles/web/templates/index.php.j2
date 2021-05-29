@@ -1,8 +1,18 @@
 <html lang="en">
     <head>
-      <meta charset="utf8">
+        <meta charset="utf8">
+        <title>VM2 webcluster</title>
+        <h1>Van Bastian Schiphouwer S1139625</h1>
+    <style>
+        body {
+            background-color: grey;
+        }
+    </style>
     </head>
     <body>
+        <h1> Welkom op </h1>
+        <?php echo {{ ansible_facts.hostname }}; ?>
+
         <?php
             echo '<h2>{{ ansible_facts.hostname }}</h2>';
         $servername = "{{ groups['databaseservers'][0] }}";

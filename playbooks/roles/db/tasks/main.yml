@@ -81,50 +81,6 @@
     login_user: "{{ mysql_root_username }}"
     login_password: "{{ mysql_root_password }}"
 
-# # - name: create deploy user
-# #   mysql_user: user=vagrant host=localhost password=vagrant priv=*.*:ALL,GRANT
-# # - name: create net-user priv
-# #   mysql_user: user=vagrant host=% password=vagrant priv=*.*:ALL,GRANT
-
-# # - name: restart mysql
-# #   service: name=mysql state=started
-  
-# # - name: restart mysql
-# #   service: name=mysql state=restarted
-
-# # - name: add custom database
-# #   mysql_db:
-# #     name: template-database
-# #     state: present
-
-# # - name: remove anonymous users db
-# #   mysql_user: user=' ' host={{ item }} state=absent
-# #   with items:
-# #   - 127.0.0.1
-# #   - ::1
-# #   - localhost
-
-# # - name: copy database template
-# #   copy: src=/home/VM2/playbooks/roles/db/templates/template-database.sql dest=/tmp
-
-# - name: create /etc/mysql/mysql.conf.d directory if not exists
-#   file:
-#     path: /etc/mysql/mysql.conf.d
-#     state: directory  
-#     mode: 0755
-#     group: root
-#     owner: root
-#     recurse: yes
-
-# # - name: import db template
-# #   mysql_db:
-# #     name: template-database
-# #     login_host: localhost
-# #     login_user: vagrant
-# #     login_password: vagrant
-# #     state: import
-# #     target: "/tmp/template-database.sql"
-
 - name: start and enable mysql service
   service:
     name: mysql

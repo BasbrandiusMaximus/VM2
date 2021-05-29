@@ -28,7 +28,7 @@ copy_file(){
     fi
 
     #Add lb to Inventory
-    if [ $LB == "true" ]; then
+    if [[ $LB == "true" ]]; then
         echo "[loadbalancers]" >>$_klantdir/inventory.ini
         COUNTER=0
         while [ $COUNTER -lt $LB_AANTAL ]; do
@@ -217,7 +217,7 @@ vagrant_nieuw(){
     #vraag om type en maak mappen structuur aan
     echo "##### Type omgeving ###############"
     read -p "Omgeving type [ontwikkel/test/acceptatie/productie] [default acceptatie]: " _type
-        if [[ $_type -eq "" ]]; then
+        if [[ $_type == "" ]]; then
             _type="acceptatie"
         fi
     echo
@@ -244,10 +244,10 @@ vagrant_nieuw(){
     echo
 
     #loadbalancers vraag (ontwikkel en test krijgen geen loadbalancers)
-    echo "##### Loadbalancers ###############"
-    if [[ "$_type" == "acceptatie" ]] || [[] "$_type" == "productie" ]]; then
+    if [ $_type == "acceptatie" ] || [ $_type == "productie" ]; then
+        echo "##### Loadbalancers ###############"
         read -p "Wilt u loadbalancers [true/false] [DEFAULT true]?: " LB
-            if [[ $LB -eq "" ]]; then
+            if [[ $LB == "" ]]; then
                 LB="true"
             fi
         if [ "$LB" == "true" ]; then
@@ -304,7 +304,7 @@ vagrant_nieuw(){
     cd "$_klantnaam-$_klantnummer"
     mkdir "$_type"
     cd "$_type"
-    cp /home/VM2/template-omgeving/config.txt /home/VM2/klanten/"$_klantnaam-$_klantnummer"/"$_type"
+    touch /home/VM2/klanten/"$_klantnaam-$_klantnummer"/"$_type"/config.txt
 
     #start met kopieren bestanden
     copy_file

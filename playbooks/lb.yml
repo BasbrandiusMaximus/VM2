@@ -1,9 +1,0 @@
----
-# - hosts: webservers
-#   gather_facts: yes
-
-  # lb
-- hosts: loadbalancers
-  become: yes
-  roles:
-    - lb
