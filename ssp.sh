@@ -71,13 +71,13 @@ copy_file(){
 
 #Vagrant file web/lb/db-variabelen veranderen
 vagrant_file(){
-    sed -i "s/{{ web }}/$WEB/g" "$_klantdir/Vagrantfile"
+    sed -i "s/{{ web_config }}/$WEB/g" "$_klantdir/Vagrantfile"
     sed -i "s/{{ web_aantal }}/$WEB_AANTAL/g" "$_klantdir/Vagrantfile"
     sed -i "s/{{ web_memory }}/$WEB_MEMORY/g" "$_klantdir/Vagrantfile"
-    sed -i "s/{{ lb }}/$LB/g" "$_klantdir/Vagrantfile"
+    sed -i "s/{{ lb_config }}/$LB/g" "$_klantdir/Vagrantfile"
     sed -i "s/{{ lb_aantal }}/$LB_AANTAL/g" "$_klantdir/Vagrantfile"
     sed -i "s/{{ lb_memory }}/$LB_MEMORY/g" "$_klantdir/Vagrantfile"
-    sed -i "s/{{ db }}/$DB/g" "$_klantdir/Vagrantfile"
+    sed -i "s/{{ db_config }}/$DB/g" "$_klantdir/Vagrantfile"
     sed -i "s/{{ db_aantal }}/$DB_AANTAL/g" "$_klantdir/Vagrantfile"
     sed -i "s/{{ db_memory }}/$DB_MEMORY/g" "$_klantdir/Vagrantfile"
 }
@@ -238,19 +238,21 @@ vagrant_nieuw(){
                 WEB_MEMORY="1024"
             fi
     else
+        WEB=false
         WEB_AANTAL=0
         WEB_MEMORY=0
     fi
     echo
 
     #loadbalancers vraag (ontwikkel en test krijgen geen loadbalancers)
-    if [ $_type == "acceptatie" ] || [ $_type == "productie" ]; then
+    if [ $_type -eq "acceptatie" ]; then
+        echo test 1
         echo "##### Loadbalancers ###############"
         read -p "Wilt u loadbalancers [true/false] [DEFAULT true]?: " LB
             if [[ $LB == "" ]]; then
                 LB="true"
             fi
-        if [ "$LB" == "true" ]; then
+            if [ "$LB" == "true" ]; then
             read -p "Aantal loadbalancers [DEFAULT 1]: " LB_AANTAL
                 if [[ $LB_AANTAL -eq "" ]]; then
                     LB_AANTAL="1"
@@ -267,12 +269,14 @@ vagrant_nieuw(){
                 if [[ $LB_STAT_PORT -eq "" ]]; then
                     LB_STATS_PORT="8080"
                 fi
+            fi
         else
+            LB=false
             LB_AANTAL=0
             LB_MEMORY=0
             LB_PORT=80
             LB_STATS_PORT=8080
-        fi
+            echo test 2
     fi
     echo
 
@@ -292,6 +296,7 @@ vagrant_nieuw(){
                 DB_MEMORY="2048"
             fi
     else
+        DB=false
         DB_AANTAL=0
         DB_MEMORY=0
     fi
