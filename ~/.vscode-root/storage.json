@@ -3,13 +3,16 @@
     "openedPathsList": {
         "entries": [
             {
-                "fileUri": "file:///home/VM2/klanten/bastian-36/test/config.txt"
-            },
-            {
-                "fileUri": "file:///home/VM2/template-omgeving/Vagrantfile"
+                "fileUri": "file:///home/VM2/klanten/gert-48/test/ansible.cfg"
             },
             {
                 "fileUri": "file:///home/VM2/ssp.sh"
+            },
+            {
+                "fileUri": "file:///home/VM2/playbooks/roles/db/files/template.sql"
+            },
+            {
+                "fileUri": "file:///home/VM2/template-omgeving/Vagrantfile"
             }
         ]
     },
@@ -56,23 +59,12 @@
                                     "id": "openRecentFile",
                                     "uri": {
                                         "$mid": 1,
-                                        "external": "file:///home/VM2/klanten/bastian-36/test/config.txt",
-                                        "path": "/home/VM2/klanten/bastian-36/test/config.txt",
+                                        "external": "file:///home/VM2/klanten/gert-48/test/ansible.cfg",
+                                        "path": "/home/VM2/klanten/gert-48/test/ansible.cfg",
                                         "scheme": "file"
                                     },
                                     "enabled": true,
-                                    "label": "/home/VM2/klanten/bastian-36/test/config.txt"
-                                },
-                                {
-                                    "id": "openRecentFile",
-                                    "uri": {
-                                        "$mid": 1,
-                                        "external": "file:///home/VM2/template-omgeving/Vagrantfile",
-                                        "path": "/home/VM2/template-omgeving/Vagrantfile",
-                                        "scheme": "file"
-                                    },
-                                    "enabled": true,
-                                    "label": "/home/VM2/template-omgeving/Vagrantfile"
+                                    "label": "/home/VM2/klanten/gert-48/test/ansible.cfg"
                                 },
                                 {
                                     "id": "openRecentFile",
@@ -84,6 +76,28 @@
                                     },
                                     "enabled": true,
                                     "label": "/home/VM2/ssp.sh"
+                                },
+                                {
+                                    "id": "openRecentFile",
+                                    "uri": {
+                                        "$mid": 1,
+                                        "external": "file:///home/VM2/playbooks/roles/db/files/template.sql",
+                                        "path": "/home/VM2/playbooks/roles/db/files/template.sql",
+                                        "scheme": "file"
+                                    },
+                                    "enabled": true,
+                                    "label": "/home/VM2/playbooks/roles/db/files/template.sql"
+                                },
+                                {
+                                    "id": "openRecentFile",
+                                    "uri": {
+                                        "$mid": 1,
+                                        "external": "file:///home/VM2/template-omgeving/Vagrantfile",
+                                        "path": "/home/VM2/template-omgeving/Vagrantfile",
+                                        "scheme": "file"
+                                    },
+                                    "enabled": true,
+                                    "label": "/home/VM2/template-omgeving/Vagrantfile"
                                 },
                                 {
                                     "id": "vscode.menubar.separator"
@@ -1494,12 +1508,12 @@
             "uiState": {
                 "mode": 1,
                 "x": 72,
-                "y": 139,
-                "width": 1250,
-                "height": 983
+                "y": 64,
+                "width": 1073,
+                "height": 947
             }
         },
         "openedWindows": []
     },
-    "pickerWorkingDir": "/home/VM2/klanten/bastian-36/test"
+    "pickerWorkingDir": "/home/VM2/klanten/gert-48/test"
 }

@@ -1,0 +1,84 @@
+Looking for git in: git
+Using git 2.25.1 from git
+> git rev-parse --git-dir
+Open repository: /home/VM2
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 48fd72baf56a5d021d019803dc7183a2edfd7265
+> git check-ignore -v -z --stdin
+> git show --textconv :template-omgeving/Vagrantfile
+> git ls-files --stage -- /home/VM2/template-omgeving/Vagrantfile
+> git cat-file -s 865e1baa6d2b3698bee50a653815ea0a95dcadea
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 48fd72baf56a5d021d019803dc7183a2edfd7265
+> git show --textconv :template-omgeving/Vagrantfile
+> git ls-files --stage -- /home/VM2/template-omgeving/Vagrantfile
+> git cat-file -s 865e1baa6d2b3698bee50a653815ea0a95dcadea
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 48fd72baf56a5d021d019803dc7183a2edfd7265
+> git show --textconv :playbooks/roles/db/files/template.sql
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/files/template.sql
+> git cat-file -s 608939caca513a856ea8253881b4602927145c3d
+> git check-ignore -v -z --stdin
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 48fd72baf56a5d021d019803dc7183a2edfd7265
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :playbooks/roles/db/files/template.sql
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/files/template.sql
+> git cat-file -s 608939caca513a856ea8253881b4602927145c3d
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 48fd72baf56a5d021d019803dc7183a2edfd7265
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :klanten/gert-48/test/ansible.cfg
+> git ls-files --stage -- /home/VM2/klanten/gert-48/test/ansible.cfg
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git show --textconv :klanten/gert-48/test/Vagrantfile
+> git ls-files --stage -- /home/VM2/klanten/gert-48/test/Vagrantfile
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :klanten/gert-48/test/ansible.cfg
+> git ls-files --stage -- /home/VM2/klanten/gert-48/test/ansible.cfg
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 48fd72baf56a5d021d019803dc7183a2edfd7265
+> git show --textconv :klanten/gert-48/test/Vagrantfile
+> git ls-files --stage -- /home/VM2/klanten/gert-48/test/Vagrantfile

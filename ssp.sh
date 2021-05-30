@@ -53,9 +53,8 @@ copy_file(){
         echo "" >>$_klantdir/inventory.ini
     fi
 
-    #sla properties op in settings.txt
+    #sla properties op in config.txt
     echo "ENVIRONMENT=$_type" >>$_klantdir/config.txt
-    # echo "=$" >>$_klantdir/config.txt
     echo "WEB=$WEB" >>$_klantdir/config.txt
     echo "WEB_AANTAL=$WEB_AANTAL" >>$_klantdir/config.txt
     echo "WEB_MEMORY=$WEB_MEMORY" >>$_klantdir/config.txt

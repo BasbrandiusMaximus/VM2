@@ -12,4 +12,4 @@ INSERT INTO webdb (message) VALUES ('werkt.');
 INSERT INTO webdb (message) VALUES ('-');
 INSERT INTO webdb (message) VALUES ('Hiep');
 INSERT INTO webdb (message) VALUES ('Hiep');
-INSERT INTO webdb (message) VALUES ('Hoera!');
+INSERT INTO webdb (message) VALUES ('Hoi!');
