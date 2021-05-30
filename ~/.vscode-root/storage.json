@@ -3,6 +3,12 @@
     "openedPathsList": {
         "entries": [
             {
+                "fileUri": "file:///home/VM2/playbooks/roles/db/tasks/main.yml"
+            },
+            {
+                "fileUri": "file:///home/VM2/playbooks/playbook.yml"
+            },
+            {
                 "fileUri": "file:///home/VM2/klanten/gert-48/test/ansible.cfg"
             },
             {
@@ -54,6 +60,28 @@
                                 },
                                 {
                                     "id": "vscode.menubar.separator"
+                                },
+                                {
+                                    "id": "openRecentFile",
+                                    "uri": {
+                                        "$mid": 1,
+                                        "external": "file:///home/VM2/playbooks/roles/db/tasks/main.yml",
+                                        "path": "/home/VM2/playbooks/roles/db/tasks/main.yml",
+                                        "scheme": "file"
+                                    },
+                                    "enabled": true,
+                                    "label": "/home/VM2/playbooks/roles/db/tasks/main.yml"
+                                },
+                                {
+                                    "id": "openRecentFile",
+                                    "uri": {
+                                        "$mid": 1,
+                                        "external": "file:///home/VM2/playbooks/playbook.yml",
+                                        "path": "/home/VM2/playbooks/playbook.yml",
+                                        "scheme": "file"
+                                    },
+                                    "enabled": true,
+                                    "label": "/home/VM2/playbooks/playbook.yml"
                                 },
                                 {
                                     "id": "openRecentFile",
@@ -1507,13 +1535,13 @@
             "backupPath": "/home/VM2/~/.vscode-root/Backups/1622314248870",
             "uiState": {
                 "mode": 1,
-                "x": 72,
-                "y": 64,
-                "width": 1073,
-                "height": 947
+                "x": 75,
+                "y": 66,
+                "width": 1202,
+                "height": 1142
             }
         },
         "openedWindows": []
     },
-    "pickerWorkingDir": "/home/VM2/klanten/gert-48/test"
+    "pickerWorkingDir": "/home/VM2/playbooks/roles/db/tasks"
 }

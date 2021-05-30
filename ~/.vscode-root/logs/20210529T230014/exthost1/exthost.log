@@ -18,3 +18,5 @@
 [2021-05-29 23:00:17.537] [exthost] [info] ExtensionService#loadCommonJSModule file:///snap/code/65/usr/share/code/resources/app/extensions/testing-editor-contributions/dist/extension.js
 [2021-05-29 23:00:17.594] [exthost] [info] ExtensionService#_doActivateExtension vscode.github-authentication {"startup":false,"extensionId":{"value":"vscode.github-authentication","_lower":"vscode.github-authentication"},"activationEvent":"onAuthenticationRequest:github"}
 [2021-05-29 23:00:17.594] [exthost] [info] ExtensionService#loadCommonJSModule file:///snap/code/65/usr/share/code/resources/app/extensions/github-authentication/dist/extension.js
+[2021-05-30 03:22:23.517] [exthost] [info] extension host terminating: received terminate message from renderer
+[2021-05-30 03:22:24.525] [exthost] [info] exiting with code 0

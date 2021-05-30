@@ -83,19 +83,19 @@ vagrant_file(){
 
 #voor verwijderen omgeving
 vagrant_destroy(){
-    read -p "Wat is uw klantnaam?: " _bestaandeklantnaam
-    read -p "Wat is uw klantnummer: " _bestaandeklantnummer
+    read -p "Uw klantnaam?: " _bestaandeklantnaam
+    read -p "Uw klantnummer: " _bestaandeklantnummer
     _bestaandeklant="$_bestaandeklantnaam-$_bestaandeklantnummer"
-    read -p "Welke omgeving wilt u verwijderen [ontwikkel, test, acceptatie, productie]? " _omgevingverwijderen
-    (cd "/home/VM2/klanten/$_bestaandeklant"/"$_omgevingverwijderen" && vagrant destroy -f)
+    read -p "Welke omgeving wilt u verwijderen [ontwikkel, test, acceptatie, productie]? " _verwijderen
+    (cd "/home/VM2/klanten/$_bestaandeklant"/"$_verwijderen" && vagrant destroy -f)
     rm -r "/home/VM2/klanten/$_bestaandeklant"
     exit 0
 }
 
 #voor aanpassingen
 vagrant_edit(){
-    read -p "Wat is uw klantnaam?: " _klantnaam
-    read -p "Wat is uw klantnummer: " _klantnummer
+    read -p "Uw klantnaam?: " _klantnaam
+    read -p "Uw klantnummer: " _klantnummer
     _editklant="$_klantnaam-$_klantnummer"
     echo $_editklant
     read -p "Welke omgeving wilt u aanpassen [ontwikkel, test, acceptatie, productie]? " _type
@@ -116,7 +116,7 @@ vagrant_edit(){
 
 
     #Verander klant-webserver
-    read -p "Wilt u de webservers aanpassen? [true/false]: " _edit_web
+    read -p "Webservers aanpassen? [true/false]: " _edit_web
     if [ $_edit_web == "true" ]; then
         read -p "Hoeveel webservers? [Er is/zijn nu $WEB_AANTAL] " WEB_AANTAL
         if [[ $WEB_AANTAL -eq "" ]]; then
@@ -130,7 +130,7 @@ vagrant_edit(){
 
     #Verander klant-loadbalancer
     if [ "$_type" == "acceptatie" ] || [ "$_type" == "productie" ]; then
-        read -p "Wilt u de loadbalancers aanpassen? [true/false]: " _edit_lb
+        read -p "Loadbalancers aanpassen? [true/false]: " _edit_lb
         if [[ $_edit_lb == "true" ]]; then
             read -p "Hoeveel loadbalancers? [Er is/zijn nu $LB_AANTAL] " LB_AANTAL
             if [[ $LB_AANTAL -eq "" ]]; then
@@ -152,7 +152,7 @@ vagrant_edit(){
     fi
 
     #verander klant-database
-    read -p "Wilt u de databaseservers aanpassen? [true/false]: " _edit_db
+    read -p "Databaseservers aanpassen? [true/false]: " _edit_db
     if [[ $edit_db == "true" ]]; then
         read -p "Hoeveel databaseservers? [Er is/zijn nu $DB_AANTAL] " DB_AANTAL
         if [[ $DB_AANTAL -eq "" ]]; then
