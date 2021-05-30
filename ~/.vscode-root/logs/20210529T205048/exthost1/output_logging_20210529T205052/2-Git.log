@@ -1,0 +1,257 @@
+Looking for git in: git
+Using git 2.25.1 from git
+> git rev-parse --git-dir
+Open repository: /home/VM2
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git check-ignore -v -z --stdin
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 65b5e95adc30fd925a4463fdc69a013e6b771f46
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git show --textconv :klanten/klantnummer.sh
+> git ls-files --stage -- /home/VM2/klanten/klantnummer.sh
+> git cat-file -s de6c5a500b50436f3447e471a7713ae87db27d51
+> git check-ignore -v -z --stdin
+> git show --textconv :klanten/bastian-33/test/inventory.ini
+> git ls-files --stage -- /home/VM2/klanten/bastian-33/test/inventory.ini
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 65b5e95adc30fd925a4463fdc69a013e6b771f46
+> git show --textconv :klanten/bastian-33/test/inventory.ini
+> git ls-files --stage -- /home/VM2/klanten/bastian-33/test/inventory.ini
+> git show --textconv :klanten/bastian-33/test/Vagrantfile
+> git ls-files --stage -- /home/VM2/klanten/bastian-33/test/Vagrantfile
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 65b5e95adc30fd925a4463fdc69a013e6b771f46
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :klanten/bastian-33/test/Vagrantfile
+> git ls-files --stage -- /home/VM2/klanten/bastian-33/test/Vagrantfile
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 65b5e95adc30fd925a4463fdc69a013e6b771f46
+> git show --textconv :klanten/bastian-33/test/Vagrantfile
+> git ls-files --stage -- /home/VM2/klanten/bastian-33/test/Vagrantfile
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git show --textconv :klanten/bastian-34/test/Vagrantfile
+> git ls-files --stage -- /home/VM2/klanten/bastian-34/test/Vagrantfile
+> git check-ignore -v -z --stdin
+> git show --textconv :template-omgeving/Vagrantfile
+> git ls-files --stage -- /home/VM2/template-omgeving/Vagrantfile
+> git cat-file -s 82838bdd6ed075367fa145b21b249029c6626eae
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 65b5e95adc30fd925a4463fdc69a013e6b771f46
+> git show --textconv :template-omgeving/Vagrantfile
+> git ls-files --stage -- /home/VM2/template-omgeving/Vagrantfile
+> git cat-file -s 82838bdd6ed075367fa145b21b249029c6626eae
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 65b5e95adc30fd925a4463fdc69a013e6b771f46
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :template-omgeving/Vagrantfile
+> git ls-files --stage -- /home/VM2/template-omgeving/Vagrantfile
+> git cat-file -s 82838bdd6ed075367fa145b21b249029c6626eae
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git show --textconv :klanten/bastian-35/test/Vagrantfile
+> git ls-files --stage -- /home/VM2/klanten/bastian-35/test/Vagrantfile
+> git show --textconv :template-omgeving/Vagrantfile
+> git ls-files --stage -- /home/VM2/template-omgeving/Vagrantfile
+> git cat-file -s 82838bdd6ed075367fa145b21b249029c6626eae
+> git show --textconv :klanten/bastian-35/test/Vagrantfile
+> git ls-files --stage -- /home/VM2/klanten/bastian-35/test/Vagrantfile
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 65b5e95adc30fd925a4463fdc69a013e6b771f46
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :klanten/bastian-35/test/Vagrantfile
+> git ls-files --stage -- /home/VM2/klanten/bastian-35/test/Vagrantfile
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 65b5e95adc30fd925a4463fdc69a013e6b771f46
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :template-omgeving/Vagrantfile
+> git ls-files --stage -- /home/VM2/template-omgeving/Vagrantfile
+> git cat-file -s 82838bdd6ed075367fa145b21b249029c6626eae
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git show --textconv :klanten/bastian-36/test/Vagrantfile
+> git ls-files --stage -- /home/VM2/klanten/bastian-36/test/Vagrantfile
+> git show --textconv :template-omgeving/Vagrantfile
+> git ls-files --stage -- /home/VM2/template-omgeving/Vagrantfile
+> git cat-file -s 82838bdd6ed075367fa145b21b249029c6626eae
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 65b5e95adc30fd925a4463fdc69a013e6b771f46
+> git show --textconv :klanten/bastian-36/test/Vagrantfile
+> git ls-files --stage -- /home/VM2/klanten/bastian-36/test/Vagrantfile
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git show --textconv :template-omgeving/Vagrantfile
+> git ls-files --stage -- /home/VM2/template-omgeving/Vagrantfile
+> git cat-file -s 82838bdd6ed075367fa145b21b249029c6626eae
+> git show --textconv :klanten/bastian-36/test/Vagrantfile
+> git ls-files --stage -- /home/VM2/klanten/bastian-36/test/Vagrantfile
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :klanten/bastian-36/test/config.txt
+> git ls-files --stage -- /home/VM2/klanten/bastian-36/test/config.txt
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 65b5e95adc30fd925a4463fdc69a013e6b771f46
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :klanten/bastian-36/test/Vagrantfile
+> git ls-files --stage -- /home/VM2/klanten/bastian-36/test/Vagrantfile
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git show --textconv :klanten/bastian-41/test/Vagrantfile
+> git ls-files --stage -- /home/VM2/klanten/bastian-41/test/Vagrantfile
+> git show --textconv :klanten/bastian-36/test/config.txt
+> git ls-files --stage -- /home/VM2/klanten/bastian-36/test/config.txt
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git show --textconv :klanten/bastian-41/test/config.txt
+> git ls-files --stage -- /home/VM2/klanten/bastian-41/test/config.txt
+> git show --textconv :klanten/bastian-36/test/config.txt
+> git ls-files --stage -- /home/VM2/klanten/bastian-36/test/config.txt
+> git show --textconv :template-omgeving/Vagrantfile
+> git ls-files --stage -- /home/VM2/template-omgeving/Vagrantfile
+> git cat-file -s 82838bdd6ed075367fa145b21b249029c6626eae
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 65b5e95adc30fd925a4463fdc69a013e6b771f46

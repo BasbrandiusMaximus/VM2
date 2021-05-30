@@ -3,17 +3,35 @@
   apt:
     update_cache: yes
 
-- name: Installeer apache
+- name: Installeer php, apache2, mysql-client en php-mysql
+  become: yes
+  become_user: root
   apt:
-    name: apache2
+    name: "{{ packages }}"
     state: present
-
-- name: Maak index.php
-  template:
-    src: "/home/VM2/playbooks/roles/web/files/index.php"
-    dest: "/var/www/html/index.php"
+  vars:
+    packages:
+      - apache2
+      - libapache2-mod-php
+      - php-cli
+      - php-gd
+      - mysql-client
+      #php version 7.4
+      - php7.4-mysql
+      - php-fpm
 
 - name: Verwijder index.html
   file:
     path: /var/www/html/index.html
     state: absent
+
+- name: Maak index.php
+  template:
+    src: /home/VM2/playbooks/roles/web/templates/index.php.j2
+    dest: /var/www/html/index.php
+
+- name: ensure apache is using the newest versions
+  become: yes
+  service:
+    name: apache2
+    state: restarted

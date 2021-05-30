@@ -28,7 +28,7 @@ all:
         klantnaam-web2:
       vars:
         dbserver: 192.168.ipaddress.41
-    loadbalancer:
+    loadbalancers:
       hosts:
         klantnaam-lb1:
       vars:

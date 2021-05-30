@@ -1,0 +1,294 @@
+Looking for git in: git
+Using git 2.25.1 from git
+> git rev-parse --git-dir
+Open repository: /home/VM2
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 48fd72baf56a5d021d019803dc7183a2edfd7265
+> git check-ignore -v -z --stdin
+> git show --textconv :template-omgeving/Vagrantfile
+> git ls-files --stage -- /home/VM2/template-omgeving/Vagrantfile
+> git cat-file -s 865e1baa6d2b3698bee50a653815ea0a95dcadea
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 48fd72baf56a5d021d019803dc7183a2edfd7265
+> git show --textconv :template-omgeving/Vagrantfile
+> git ls-files --stage -- /home/VM2/template-omgeving/Vagrantfile
+> git cat-file -s 865e1baa6d2b3698bee50a653815ea0a95dcadea
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 48fd72baf56a5d021d019803dc7183a2edfd7265
+> git show --textconv :playbooks/roles/db/files/template.sql
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/files/template.sql
+> git cat-file -s 608939caca513a856ea8253881b4602927145c3d
+> git check-ignore -v -z --stdin
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 48fd72baf56a5d021d019803dc7183a2edfd7265
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :playbooks/roles/db/files/template.sql
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/files/template.sql
+> git cat-file -s 608939caca513a856ea8253881b4602927145c3d
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 48fd72baf56a5d021d019803dc7183a2edfd7265
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :klanten/gert-48/test/ansible.cfg
+> git ls-files --stage -- /home/VM2/klanten/gert-48/test/ansible.cfg
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git show --textconv :klanten/gert-48/test/Vagrantfile
+> git ls-files --stage -- /home/VM2/klanten/gert-48/test/Vagrantfile
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :klanten/gert-48/test/ansible.cfg
+> git ls-files --stage -- /home/VM2/klanten/gert-48/test/ansible.cfg
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s 48fd72baf56a5d021d019803dc7183a2edfd7265
+> git show --textconv :klanten/gert-48/test/Vagrantfile
+> git ls-files --stage -- /home/VM2/klanten/gert-48/test/Vagrantfile
+> git status -z -u
+> git ls-files --stage -- /home/VM2/klanten/gert-48/test/Vagrantfile
+> git symbolic-ref --short HEAD
+> git cat-file -s 350c643845f8c10ffb38f26c92defd8d7bb916c4
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git show --textconv :klanten/gert-48/test/Vagrantfile
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :klanten/gert-48/test/ansible.cfg
+> git ls-files --stage -- /home/VM2/klanten/gert-48/test/ansible.cfg
+> git cat-file -s a13220cad9b4aff9818ace36e1eaa998ddd797ab
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s ba208e5d4c22b16ad02856161935038659cdb7f2
+> git show --textconv :playbooks/playbook.yml
+> git ls-files --stage -- /home/VM2/playbooks/playbook.yml
+> git cat-file -s 75e2febc3eb8d138905cdb059960e3df6c7577c7
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git show --textconv :klanten/gert-48/test/inventory.ini
+> git ls-files --stage -- /home/VM2/klanten/gert-48/test/inventory.ini
+> git cat-file -s 06f75bac09776b2de85c170c3614b487cb50b38c
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git show --textconv :playbooks/roles/web/tasks/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/web/tasks/main.yml
+> git cat-file -s e1cf8e3a8fb8964dc344b2cc3dd2ea8a090bfc36
+> git show --textconv :playbooks/playbook.yml
+> git ls-files --stage -- /home/VM2/playbooks/playbook.yml
+> git cat-file -s 75e2febc3eb8d138905cdb059960e3df6c7577c7
+> git show --textconv :playbooks/roles/web/tasks/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/web/tasks/main.yml
+> git cat-file -s e1cf8e3a8fb8964dc344b2cc3dd2ea8a090bfc36
+> git check-ignore -v -z --stdin
+> git show --textconv :playbooks/roles/web/templates/index.php.j2
+> git ls-files --stage -- /home/VM2/playbooks/roles/web/templates/index.php.j2
+> git cat-file -s 7df6bd8776fee91a029f8731eadc79abbb0f44bc
+> git show --textconv :klanten/gert-48/test/ansible.cfg
+> git ls-files --stage -- /home/VM2/klanten/gert-48/test/ansible.cfg
+> git cat-file -s a13220cad9b4aff9818ace36e1eaa998ddd797ab
+> git show --textconv :playbooks/roles/web/templates/index.php.j2
+> git ls-files --stage -- /home/VM2/playbooks/roles/web/templates/index.php.j2
+> git cat-file -s 7df6bd8776fee91a029f8731eadc79abbb0f44bc
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git show --textconv :playbooks/roles/lb/tasks/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/lb/tasks/main.yml
+> git cat-file -s 047a67ec57b5a9159237ada8fcfeec97cf433fdd
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :playbooks/roles/lb/templates/haproxy.cfg.j2
+> git ls-files --stage -- /home/VM2/playbooks/roles/lb/templates/haproxy.cfg.j2
+> git cat-file -s 2678c58f9cb815f130753aa728b019307653f170
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git show --textconv :klanten/gert-48/test/Vagrantfile
+> git ls-files --stage -- /home/VM2/klanten/gert-48/test/Vagrantfile
+> git cat-file -s 350c643845f8c10ffb38f26c92defd8d7bb916c4
+> git show --textconv :playbooks/roles/lb/templates/haproxy.cfg.j2
+> git ls-files --stage -- /home/VM2/playbooks/roles/lb/templates/haproxy.cfg.j2
+> git cat-file -s 2678c58f9cb815f130753aa728b019307653f170
+> git show --textconv :playbooks/roles/db/files/template.sql
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/files/template.sql
+> git cat-file -s 5743019468b870c249a59baaa1fc9d34445d5635
+> git show --textconv :playbooks/roles/db/defaults/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/defaults/main.yml
+> git cat-file -s e7e07d58351e97f94ca8a6c82ce4adfb718593c4
+> git show --textconv :playbooks/roles/lb/tasks/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/lb/tasks/main.yml
+> git cat-file -s 047a67ec57b5a9159237ada8fcfeec97cf433fdd
+> git show --textconv :playbooks/roles/db/tasks/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/tasks/main.yml
+> git cat-file -s 32d864733b3f65995e1a7d45c2749953c254bc05
+> git show --textconv :playbooks/roles/web/tasks/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/web/tasks/main.yml
+> git cat-file -s e1cf8e3a8fb8964dc344b2cc3dd2ea8a090bfc36
+> git show --textconv :playbooks/roles/web/handlers/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/web/handlers/main.yml
+> git cat-file -s d7b3dc0d9b7c8fc0b44b135d637dff0a229d3ad2
+> git show --textconv :playbooks/roles/db/tasks/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/tasks/main.yml
+> git cat-file -s 32d864733b3f65995e1a7d45c2749953c254bc05
+> git show --textconv :klanten/gert-48/test/ansible.cfg
+> git ls-files --stage -- /home/VM2/klanten/gert-48/test/ansible.cfg
+> git cat-file -s a13220cad9b4aff9818ace36e1eaa998ddd797ab
+> git show --textconv :playbooks/roles/db/tasks/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/tasks/main.yml
+> git cat-file -s 32d864733b3f65995e1a7d45c2749953c254bc05
+> git show --textconv :playbooks/roles/db/files/template.sql
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/files/template.sql
+> git cat-file -s 5743019468b870c249a59baaa1fc9d34445d5635
+> git show --textconv :playbooks/roles/lb/tasks/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/lb/tasks/main.yml
+> git cat-file -s 047a67ec57b5a9159237ada8fcfeec97cf433fdd
+> git show --textconv :playbooks/roles/db/tasks/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/tasks/main.yml
+> git cat-file -s 32d864733b3f65995e1a7d45c2749953c254bc05
+> git show --textconv :playbooks/roles/lb/tasks/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/lb/tasks/main.yml
+> git cat-file -s 047a67ec57b5a9159237ada8fcfeec97cf433fdd
+> git show --textconv :playbooks/roles/db/templates/my.cnf.j2
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/templates/my.cnf.j2
+> git cat-file -s c97cd3fff384867a2b77cea462ff2623b1431cd9
+> git show --textconv :playbooks/roles/db/templates/root-my.cnf.j2
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/templates/root-my.cnf.j2
+> git cat-file -s cf6ad5cf4648a419b7194ef63c4d2d19706e513d
+> git show --textconv :playbooks/roles/lb/tasks/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/lb/tasks/main.yml
+> git cat-file -s 047a67ec57b5a9159237ada8fcfeec97cf433fdd
+> git show --textconv :playbooks/playbook.yml
+> git ls-files --stage -- /home/VM2/playbooks/playbook.yml
+> git cat-file -s 75e2febc3eb8d138905cdb059960e3df6c7577c7
+> git show --textconv :playbooks/roles/lb/tasks/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/lb/tasks/main.yml
+> git cat-file -s 047a67ec57b5a9159237ada8fcfeec97cf433fdd
+> git show --textconv :playbooks/roles/db/tasks/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/tasks/main.yml
+> git cat-file -s 32d864733b3f65995e1a7d45c2749953c254bc05
+> git show --textconv :playbooks/roles/lb/tasks/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/lb/tasks/main.yml
+> git cat-file -s 047a67ec57b5a9159237ada8fcfeec97cf433fdd
+> git show --textconv :playbooks/roles/db/tasks/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/tasks/main.yml
+> git cat-file -s 32d864733b3f65995e1a7d45c2749953c254bc05
+> git show --textconv :playbooks/roles/lb/tasks/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/lb/tasks/main.yml
+> git cat-file -s 047a67ec57b5a9159237ada8fcfeec97cf433fdd
+> git show --textconv :playbooks/roles/db/defaults/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/defaults/main.yml
+> git cat-file -s e7e07d58351e97f94ca8a6c82ce4adfb718593c4
+> git show --textconv :playbooks/roles/lb/tasks/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/lb/tasks/main.yml
+> git cat-file -s 047a67ec57b5a9159237ada8fcfeec97cf433fdd
+> git show --textconv :playbooks/roles/db/defaults/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/defaults/main.yml
+> git cat-file -s e7e07d58351e97f94ca8a6c82ce4adfb718593c4
+> git show --textconv :playbooks/roles/db/tasks/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/tasks/main.yml
+> git cat-file -s 32d864733b3f65995e1a7d45c2749953c254bc05
+> git show --textconv :playbooks/roles/db/files/template.sql
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/files/template.sql
+> git cat-file -s 5743019468b870c249a59baaa1fc9d34445d5635
+> git show --textconv :playbooks/roles/db/defaults/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/defaults/main.yml
+> git cat-file -s e7e07d58351e97f94ca8a6c82ce4adfb718593c4
+> git show --textconv :playbooks/roles/lb/tasks/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/lb/tasks/main.yml
+> git cat-file -s 047a67ec57b5a9159237ada8fcfeec97cf433fdd
+> git show --textconv :playbooks/roles/db/tasks/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/tasks/main.yml
+> git cat-file -s 32d864733b3f65995e1a7d45c2749953c254bc05
+> git show --textconv :playbooks/roles/db/files/template.sql
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/files/template.sql
+> git cat-file -s 5743019468b870c249a59baaa1fc9d34445d5635
+> git show --textconv :playbooks/roles/db/defaults/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/defaults/main.yml
+> git cat-file -s e7e07d58351e97f94ca8a6c82ce4adfb718593c4
+> git show --textconv :playbooks/roles/db/files/template.sql
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/files/template.sql
+> git cat-file -s 5743019468b870c249a59baaa1fc9d34445d5635
+> git show --textconv :playbooks/roles/db/templates/my.cnf.j2
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/templates/my.cnf.j2
+> git cat-file -s c97cd3fff384867a2b77cea462ff2623b1431cd9
+> git show --textconv :playbooks/roles/db/templates/root-my.cnf.j2
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/templates/root-my.cnf.j2
+> git cat-file -s cf6ad5cf4648a419b7194ef63c4d2d19706e513d
+> git show --textconv :playbooks/roles/db/tasks/main.yml
+> git ls-files --stage -- /home/VM2/playbooks/roles/db/tasks/main.yml
+> git cat-file -s 32d864733b3f65995e1a7d45c2749953c254bc05
+> git show --textconv :ssp.sh
+> git ls-files --stage -- /home/VM2/ssp.sh
+> git cat-file -s ba208e5d4c22b16ad02856161935038659cdb7f2
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track) refs/heads/master refs/remotes/master
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template

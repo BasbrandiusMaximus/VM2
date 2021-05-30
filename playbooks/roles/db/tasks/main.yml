@@ -1,74 +1,90 @@
 ---
-- name: Update apt update_cache
+- name: installeer mysql
   apt:
+    name:
+      - python3-pip
+      - mysql-server
+      - mysql-client
+    state: present
     update_cache: yes
 
-- name: Installeer mysql
-  apt:
-    name: "{{ packages }}"
+- name: installeer pymysql
+  pip:
+    name: pymysql
     state: present
-  vars:
-    packages:
-    - "{{ mypip }}"
-    - "{{ "pymysqldb }}"
-    - libmysqlclient-dev
-    - mysql-server
-    - mysql-client
 
-- name: start mySQL-server
-  service:
-    name: mysql
-    state: started
+- name: voeg config file toe
+  template:
+    src: "my.cnf.j2"
+    dest: "/etc/mysql/mysql.cnf"
+    owner: root
+    group: root
+    mode: 0644
+  notify:
 
-- name: remove test db
+- name: voeg config file aan root toe
+  template:
+    src: "root-my.cnf.j2"
+    dest: "/root/.my.cnf"
+    owner: root
+    group: root
+    mode: 0600
+  notify:
+  - restart mysql-server
+
+- name: maak default gebruiker aan
+  become: true
+  mysql_user:
+    login_user: "{{ mysql_root_username }}"
+    login_password: "{{ mysql_root_password }}"
+    name: "{{ mysql_root_username }}"
+    host: 'localhost'
+    password: "{{ mysql_root_password }}"
+    priv: '*.*:ALL,GRANT'
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+
+- name: verwijder mysql test db
   mysql_db:
     name: test
     state: absent
 
-- name: create deploy user
-  mysql_user: user=vagrant host=localhost password=vagrant priv=*.*:ALL,GRANT
+- name: verwijder anonieme mysql user
+  mysql_user:
+    name: ''
+    host_all: yes
+    state: absent
 
-- name: create net-user priv
-  mysql_user: user=vagrant host=% password=vagrant priv=*.*:ALL,GRANT
-
-- name: write my.cnf
-  template: src=/home/VM2/playbooks/roles/db/templates/my.cnf dest=/etc/mysql/my.cnf
-
-- name: restart mysql
-  service: name=mysql state=started
-  
-- name: restart mysql
-  service: name=mysql state=restarted
-
-- name: add custom database
+- name: voeg database toe toe aan webdb
   mysql_db:
-    name: template-database
+    name: webdb
     state: present
 
-- name: remove anonymous users db
-  mysql_user: user=' ' host={{ item }} state=absent
-  with items:
-  - 127.0.0.1
-  - ::1
-  - localhost
+- name: maak mysql gebruiker aan voor toegang
+  mysql_user:
+    user: apache
+    host: "{{ item }}"
+    password: 'apache'
+    priv: 'webdb.*:ALL,GRANT'
+    state: present
+  with_items: "{{ groups['webservers'] }}"
 
-- name: copy database template
-  copy: src=/home/VM2/playbooks/roles/db/templates/template-database.sql dest=/tmp
+- name: voeg data aan webdb toe
+  copy:
+    src: template.sql
+    dest: /tmp/template.sql
 
-- name: create /etc/mysql/mysql.conf.d directory if not exists
-  file:
-    path: /etc/mysql/mysql.conf.d
-    state: directory  
-    mode: 0755
-    group: root
-    owner: root
-    recurse: yes
-
-- name: import db template
+- name: insert webdb data
   mysql_db:
-    name: template-database
-    login_host: localhost
-    login_user: vagrant
-    login_password: vagrant
+    name: webdb
     state: import
-    target: "/tmp/template-database.sql"
+    target: /tmp/template.sql
+    login_user: "{{ mysql_root_username }}"
+    login_password: "{{ mysql_root_password }}"
+
+- name: start and enable mysql service
+  service:
+    name: mysql
+    state: started
+    enabled: yes
+  notify:
+  - restart mysql-server

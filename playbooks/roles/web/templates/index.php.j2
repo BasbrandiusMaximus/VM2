@@ -1,0 +1,46 @@
+<html lang="en">
+    <head>
+        <meta charset="utf8">
+        <title>VM2 webcluster</title>
+        <h1>Van Bastian Schiphouwer S1139625</h1>
+    <style>
+        body {
+            background-color: grey;
+        }
+    </style>
+    </head>
+    <body>
+        <h1> Welkom op </h1>
+        <?php echo {{ ansible_facts.hostname }}; ?>
+
+        <?php
+            echo '<h2>{{ ansible_facts.hostname }}</h2>';
+        $servername = "{{ groups['databaseservers'][0] }}";
+        $username = "apache";
+        $password = "apache";
+        $database = "webdb";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $database);
+
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = "SELECT message FROM webdb";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+            echo "<p>" . $row["message"] . "</p>";
+            }
+        } else {
+            echo "<p>0 results</p>";
+        }
+
+        $conn->close();
+        ?>
+    </body>
+</html>
